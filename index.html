@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposta Comercial — Vértice Arquitetura & Urbanismo | GVL Studio</title>
+
+  <!-- Google Fonts: Space Grotesk (Display), Inter (Editorial) & JetBrains Mono (Dados/Preços) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            obsidian: '#0A0A0A',
+            surface: '#111114',
+            surfaceHover: '#16161B',
+            hairline: '#242429',
+            offwhite: '#F5F5F3',
+            muted: '#9E9EA8',
+            brand: {
+              DEFAULT: '#FF5500',
+              hover: '#FF6D24',
+              tint: 'rgba(255, 85, 0, 0.08)',
+              border: 'rgba(255, 85, 0, 0.45)'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --bg-obsidian: #0A0A0A;
+      --bg-surface: #111114;
+      --border-hairline: #242429;
+      --accent-orange: #FF5500;
+      --accent-orange-hover: #FF6D24;
+      --text-primary: #F5F5F3;
+      --text-muted: #9E9EA8;
+      --container-pad: clamp(1.25rem, 4vw, 3.5rem);
+      --section-pad: clamp(4rem, 8vw, 7.5rem);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      background-color: var(--bg-obsidian);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Tipografia Fluida com clamp() */
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.35rem, 6.2vw, 5.25rem);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.75rem, 3.8vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+    }
+
+    .price-figure {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(1.85rem, 3vw, 2.5rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .container-fluid {
+      width: 100%;
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: var(--container-pad);
+      padding-right: var(--container-pad);
+    }
+
+    .section-spacing {
+      padding-top: var(--section-pad);
+      padding-bottom: var(--section-pad);
+    }
+
+    /* Scrollbar Minimalista */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #09090B;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #242429;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #FF5500;
+    }
+
+    /* Grid Arquitetônico com Linhas Finas */
+    .arch-border {
+      border-color: var(--border-hairline);
+    }
+
+    /* Grade sutil de fundo no Hero */
+    .hero-grid-bg {
+      background-image: 
+        linear-gradient(to right, rgba(36, 36, 41, 0.35) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(36, 36, 41, 0.35) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    /* Transições suaves nos cards */
+    .pkg-card {
+      transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+    }
+
+    /* Botão Laranja Editorial */
+    .btn-orange {
+      background-color: #FF5500;
+      color: #09090B;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+    .btn-orange:hover {
+      background-color: #FF6D24;
+    }
+    .btn-orange:active {
+      transform: scale(0.99);
+    }
+
+    /* Abas da Metodologia */
+    .tab-btn[aria-selected="true"] {
+      border-color: #FF5500;
+      background-color: rgba(255, 85, 0, 0.08);
+      color: #F5F5F3;
+    }
+    .tab-btn[aria-selected="true"] .tab-num {
+      color: #FF5500;
+    }
+
+    /* Radio-cards destacados de Condição de Pagamento */
+    .pay-radio-card {
+      transition: border-color 0.22s ease, background-color 0.22s ease, box-shadow 0.22s ease, transform 0.18s ease;
+    }
+    .pay-radio-card.is-active {
+      border-color: #FF5500;
+      background-color: rgba(255, 85, 0, 0.09);
+      box-shadow: 0 0 0 1px #FF5500, 0 12px 32px -12px rgba(255, 85, 0, 0.35);
+    }
+  </style>
+</head>
+<body class="selection:bg-[#FF5500] selection:text-[#0A0A0A]">
+
+  <!-- ===================================================================== -->
+  <!-- TOP NAVIGATION BAR                                                    -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-40 bg-[#0A0A0A]/90 backdrop-blur-md border-b border-[#242429]">
+          <span class="hidden md:inline text-[#242429]">//</span>
+          <span class="font-mono text-[10px] sm:text-xs tracking-[0.18em] text-[#9E9EA8] uppercase">Generating Visual Legacies</span>
+        </div>
+      </a>
+
+      <!-- Metadados & Atalho -->
+      <div class="flex items-center gap-4 sm:gap-6">
+        <span class="hidden lg:inline-block font-mono text-xs text-[#9E9EA8] tracking-wider uppercase">
+          PROPOSTA #2026-114 • VÉRTICE ARQUITETURA • 19/11/2026
+        </span>
+        <a href="#investimento" class="font-mono text-xs font-semibold uppercase tracking-wider px-3.5 py-2 border border-[#FF5500]/50 text-[#FF5500] hover:bg-[#FF5500] hover:text-[#09090B] transition-colors rounded-sm">
+          Investimento ↓
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================================================================== -->
+    <!-- HERO SECTION                                                          -->
+    <!-- ===================================================================== -->
+    <section class="relative border-b border-[#242429] hero-grid-bg overflow-hidden">
+      <div class="container-fluid pt-16 pb-16 sm:pt-24 sm:pb-24 lg:pt-32 lg:pb-28">
+        <div class="max-w-5xl hero-reveal">
+          <div class="inline-flex items-center gap-2.5 px-3 py-1.5 mb-8 border border-[#242429] bg-[#111114] rounded-sm">
+            <span class="w-2 h-2 rounded-full bg-[#FF5500]"></span>
+            <span class="font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-[#F5F5F3]">
+              Diagnóstico Estratégico & Proposta Comercial
+            </span>
+          </div>
+
+          <h1 class="hero-title font-semibold text-[#F5F5F3] mb-8">
+            Olá, Rafael <span class="text-[#FF5500]">&amp;</span><br class="hidden sm:block" />
+            equipe Vértice<span class="text-[#FF5500]">.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg lg:text-xl text-[#9E9EA8] font-light leading-relaxed max-w-3xl mb-12">
+            Com base na nossa reunião de diagnóstico, estruturamos este plano para reposicionar a <strong class="text-[#F5F5F3] font-medium">Vértice Arquitetura &amp; Urbanismo</strong> — elevando a percepção de valor do escritório para conquistar contratos corporativos e residenciais de alto padrão nos próximos 6 meses, unindo estratégia verbal, identidade visual proprietária e uma presença digital desenhada para converter decisores.
+          </p>
+        </div>
+
+        <!-- Faixa de Metadados do Diagnóstico -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-[#242429] bg-[#111114] hero-reveal">
+          <div class="p-5 sm:p-6 border-b sm:border-b-0 sm:border-r border-[#242429]">
+            <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-[#9E9EA8] mb-1.5">Cliente &amp; Decisor</div>
+            <div class="font-display font-medium text-sm sm:text-base text-[#F5F5F3]">Vértice Arquitetura • Arq. Rafael Mendes</div>
+          </div>
+          <div class="p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-[#242429]">
+            <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-[#9E9EA8] mb-1.5">Porte Mapeado</div>
+            <div class="font-display font-medium text-sm sm:text-base text-[#F5F5F3]">PME Estruturada (Porte 2 • 18 colab.)</div>
+          </div>
+          <div class="p-5 sm:p-6 border-b sm:border-b-0 sm:border-r border-[#242429]">
+            <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-[#9E9EA8] mb-1.5">Foco Estratégico</div>
+            <div class="font-display font-medium text-sm sm:text-base text-[#FF5500]">Reposicionamento &amp; Conversão Digital</div>
+          </div>
+          <div class="p-5 sm:p-6">
+            <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-[#9E9EA8] mb-1.5">Emissão &amp; Validade</div>
+            <div class="font-mono text-sm text-[#F5F5F3]">19/11/2026 • Válida por 10 dias</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 01 — OBJETIVOS DO PROJETO                                     -->
+    <!-- ===================================================================== -->
+    <section class="section-spacing border-b border-[#242429] reveal-section">
+      <div class="container-fluid">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+          <div>
+            <span class="font-mono text-xs uppercase tracking-[0.2em] text-[#FF5500] block mb-3">01 // Direcionamento</span>
+            <h2 class="section-title font-semibold text-[#F5F5F3]">Objetivos do Projeto<span class="text-[#FF5500]">.</span></h2>
+          </div>
+          <p class="text-sm sm:text-base text-[#9E9EA8] max-w-md font-light">
+            Quatro pilares desenhados para alinhar a entrega técnica do escritório à percepção de marca exigida pelo mercado corporativo e de luxo.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-[#242429] bg-[#111114]">
+          <!-- Objetivo 01 -->
+          <div class="p-7 sm:p-8 border-b md:border-r border-[#242429] hover:bg-[#16161B] transition-colors">
+            <div class="font-mono text-xs text-[#FF5500] mb-6">01 / POSICIONAMENTO</div>
+            <h3 class="font-display text-lg sm:text-xl font-semibold text-[#F5F5F3] mb-3">Percepção de Alto Ticket</h3>
+            <p class="text-sm text-[#9E9EA8] font-light leading-relaxed">
+              Transicionar a imagem de projetos residenciais locais para uma assinatura arquitetônica de autoridade, justificando honorários superiores.
+            </p>
+          </div>
+
+          <!-- Objetivo 02 -->
+          <div class="p-7 sm:p-8 border-b lg:border-r border-[#242429] hover:bg-[#16161B] transition-colors">
+            <div class="font-mono text-xs text-[#FF5500] mb-6">02 / CONSISTÊNCIA</div>
+            <h3 class="font-display text-lg sm:text-xl font-semibold text-[#F5F5F3] mb-3">Sistema Visual &amp; Verbal</h3>
+            <p class="text-sm text-[#9E9EA8] font-light leading-relaxed">
+              Unificar discurso, manifesto, propostas técnicas, pranchas de apresentação e todos os pontos de contato físicos e digitais da Vértice.
+            </p>
+          </div>
+
+          <!-- Objetivo 03 -->
+          <div class="p-7 sm:p-8 border-b md:border-b-0 md:border-r border-[#242429] hover:bg-[#16161B] transition-colors">
+            <div class="font-mono text-xs text-[#FF5500] mb-6">03 / AQUISIÇÃO</div>
+            <h3 class="font-display text-lg sm:text-xl font-semibold text-[#F5F5F3] mb-3">Presença Digital de Conversão</h3>
+            <p class="text-sm text-[#9E9EA8] font-light leading-relaxed">
+              Estruturar uma plataforma digital rápida e persuasiva para transformar indicações e tráfego qualificado em reuniões de briefing.
+            </p>
+          </div>
+
+          <!-- Objetivo 04 -->
+          <div class="p-7 sm:p-8 hover:bg-[#16161B] transition-colors">
+            <div class="font-mono text-xs text-[#FF5500] mb-6">04 / ESCALA INTERNA</div>
+            <h3 class="font-display text-lg sm:text-xl font-semibold text-[#F5F5F3] mb-3">Governança &amp; Autonomia</h3>
+            <p class="text-sm text-[#9E9EA8] font-light leading-relaxed">
+              Entregar Brandbook e ativos organizados para que a equipe de 18 colaboradores aplique a marca com rigor estético e zero ruído.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 02 — INVESTIMENTO & ESCOPO (3 CARDS + CALCULADORA)            -->
+    <!-- ===================================================================== -->
+    <section id="investimento" class="section-spacing border-b border-[#242429] reveal-section">
+      <div class="container-fluid">
+        <!-- Cabeçalho da Seção -->
+        <div class="mb-10 sm:mb-12">
+          <span class="font-mono text-xs uppercase tracking-[0.2em] text-[#FF5500] block mb-3">02 // Arquitetura de Escopo &amp; Investimento</span>
+          <h2 class="section-title font-semibold text-[#F5F5F3] mb-3">Configure sua proposta<span class="text-[#FF5500]">.</span></h2>
+          <p class="text-sm sm:text-base text-[#9E9EA8] max-w-2xl font-light">
+            Primeiro selecione a condição de pagamento desejada para atualizar automaticamente todos os valores da página; em seguida, escolha o escopo e eventuais módulos extras.
+          </p>
+        </div>
+
+        <!-- PASSO 1: PAINEL DESTACADO DE CONDIÇÃO DE PAGAMENTO -->
+        <div class="border border-[#242429] bg-[#111114] p-5 sm:p-8 mb-12" aria-labelledby="step1-heading">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 mb-6 border-b border-[#242429]">
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="font-mono text-[11px] font-bold uppercase tracking-[0.16em] px-2.5 py-1 bg-[#FF5500] text-[#0A0A0A] rounded-sm">
+                PASSO 1
+              </span>
+              <h3 id="step1-heading" class="font-display text-lg sm:text-xl font-semibold text-[#F5F5F3]">
+                Selecione a Condição de Pagamento
+              </h3>
+            </div>
+
+            <!-- Indicador de Status Ativo em Tempo Real -->
+            <div id="payment-live-status" class="inline-flex items-center gap-2.5 px-3.5 py-2 border border-[#FF5500]/50 bg-[#FF5500]/10 rounded-sm self-start md:self-auto">
+              <span class="w-2 h-2 rounded-full bg-[#FF5500] animate-pulse"></span>
+              <span class="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#F5F5F3]">
+                ATIVO: À VISTA — 20% DE DESCONTO APLICADO
+              </span>
+            </div>
+          </div>
+
+          <!-- Dois Radio-Cards Grandes e Interativos Lado a Lado -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6" role="radiogroup" aria-label="Condição de pagamento">
+            <!-- Radio-Card 1: À Vista -->
+            <div id="radio-card-vista"
+                 role="radio"
+                 tabindex="0"
+                 aria-checked="true"
+                 class="pay-radio-card is-active p-5 sm:p-7 border border-[#FF5500] bg-[#FF5500]/[0.09] cursor-pointer select-none flex flex-col justify-between">
+              <div>
+                <div class="flex items-start justify-between gap-3 mb-3">
+                  <div class="flex items-center gap-3">
+                    <!-- Indicador Radio -->
+                    <span id="radio-dot-vista" class="w-5 h-5 rounded-full border-2 border-[#FF5500] flex items-center justify-center shrink-0">
+                      <span class="w-2.5 h-2.5 rounded-full bg-[#FF5500]"></span>
+                    </span>
+                    <span class="font-display text-xl sm:text-2xl font-bold text-[#F5F5F3]">À Vista</span>
+                  </div>
+                  <span class="font-mono text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 bg-[#FF5500] text-[#0A0A0A] rounded-sm shrink-0">
+                    20% DE DESCONTO
+                  </span>
+                </div>
+
+                <p class="text-xs sm:text-sm text-[#F5F5F3]/85 font-light leading-relaxed mb-4 pl-8">
+                  Pagamento integral via PIX ou transferência na assinatura do contrato. O benefício de fluxo de caixa é repassado diretamente com <strong class="text-[#F5F5F3] font-medium">20% OFF</strong> em todos os pacotes e add-ons.
+                </p>
+              </div>
+
+              <div class="pl-8 pt-3 border-t border-[#242429]/80 flex flex-wrap items-center justify-between gap-2">
+                <span id="radio-vista-savings" class="font-mono text-xs font-semibold text-[#FF5500]">
+                  Economia imediata de R$ 3.000 no pacote atual
+                </span>
+                <span id="radio-tag-vista" class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#FF5500]">
+                  ✓ SELECIONADO
+                </span>
+              </div>
+            </div>
+
+            <!-- Radio-Card 2: A Prazo -->
+            <div id="radio-card-prazo"
+                 role="radio"
+                 tabindex="0"
+                 aria-checked="false"
+                 class="pay-radio-card p-5 sm:p-7 border border-[#242429] bg-[#0D0D10] hover:border-[#FF5500]/50 cursor-pointer select-none flex flex-col justify-between">
+              <div>
+                <div class="flex items-start justify-between gap-3 mb-3">
+                  <div class="flex items-center gap-3">
+                    <!-- Indicador Radio -->
+                    <span id="radio-dot-prazo" class="w-5 h-5 rounded-full border-2 border-[#9E9EA8] flex items-center justify-center shrink-0">
+                      <span class="w-2.5 h-2.5 rounded-full bg-transparent"></span>
+                    </span>
+                    <span class="font-display text-xl sm:text-2xl font-bold text-[#F5F5F3]">A Prazo</span>
+                  </div>
+                  <span class="font-mono text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 border border-[#242429] bg-[#16161B] text-[#F5F5F3] rounded-sm shrink-0">
+                    50/50 OU ATÉ 6X
+                  </span>
+                </div>
+
+                <p class="text-xs sm:text-sm text-[#9E9EA8] font-light leading-relaxed mb-4 pl-8">
+                  Flexibilidade financeira com <strong class="text-[#F5F5F3] font-medium">50% de sinal</strong> na aprovação + <strong class="text-[#F5F5F3] font-medium">50% na entrega final</strong>, ou parcelamento em até <strong class="text-[#F5F5F3] font-medium">6x sem juros</strong> no Cartão de Crédito ou Boleto.
+                </p>
+              </div>
+
+              <div class="pl-8 pt-3 border-t border-[#242429]/80 flex flex-wrap items-center justify-between gap-2">
+                <span id="radio-prazo-preview" class="font-mono text-xs text-[#9E9EA8]">
+                  Sinal de R$ 7.500 + R$ 7.500 (ou 6x de R$ 2.500)
+                </span>
+                <span id="radio-tag-prazo" class="font-mono text-[10px] uppercase tracking-widest text-[#9E9EA8]">
+                  CLIQUE PARA ATIVAR
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASSO 2: CABEÇALHO DOS 3 CARDS -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div class="flex items-center gap-3">
+            <span class="font-mono text-[11px] font-bold uppercase tracking-[0.16em] px-2.5 py-1 border border-[#FF5500] text-[#FF5500] rounded-sm">
+              PASSO 2
+            </span>
+            <h3 class="font-display text-lg sm:text-xl font-semibold text-[#F5F5F3]">
+              Escolha o Escopo Ideal
+            </h3>
+          </div>
+          <span id="packages-mode-hint" class="font-mono text-xs text-[#9E9EA8]">
+            Exibindo valores <strong class="text-[#FF5500]">à vista (20% OFF)</strong>
+          </span>
+        </div>
+
+        <!-- 3 CARDS LADO A LADO (Ancoragem Cenário A — Porte 2: Tier 3 -> Tier 2 ⭐ -> Tier 1) -->
+        <div id="packages-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+          <!-- Renderizado via JavaScript para sincronia perfeita de seleção e preços -->
+        </div>
+
+        <!-- MÓDULOS EXTRAS (ADD-ONS) + RESUMO EXECUTIVO INTERATIVO -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 border border-[#242429] bg-[#111114]">
+          <!-- Coluna Esquerda: Add-ons -->
+          <div class="lg:col-span-7 p-6 sm:p-10 border-b lg:border-b-0 lg:border-r border-[#242429]">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-3">
+                <span class="font-mono text-[11px] font-bold uppercase tracking-[0.16em] px-2.5 py-1 border border-[#242429] text-[#9E9EA8] rounded-sm">
+                  PASSO 3
+                </span>
+                <h3 class="font-display text-xl sm:text-2xl font-semibold text-[#F5F5F3]">Módulos Extras (Add-ons)</h3>
+              </div>
+              <span class="font-mono text-[11px] text-[#9E9EA8] uppercase tracking-wider">Valores Fixos Opcionais</span>
+            </div>
+            <p class="text-sm text-[#9E9EA8] font-light mb-8">
+              Recursos complementares mapeados durante o diagnóstico para acelerar a operação comercial da Vértice.
+            </p>
+
+            <div id="addons-list" class="space-y-4">
+              <!-- Renderizado via JavaScript -->
+            </div>
+          </div>
+
+          <!-- Coluna Direita: Resumo Dinâmico & CTA WhatsApp -->
+          <div class="lg:col-span-5 p-6 sm:p-10 bg-[#0D0D10] flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-4 mb-5 border-b border-[#242429]">
+                <span class="font-mono text-xs uppercase tracking-[0.18em] text-[#FF5500]">Resumo da Configuração</span>
+                <span id="summary-badge" class="font-mono text-[11px] px-2.5 py-1 bg-[#FF5500]/10 text-[#FF5500] border border-[#FF5500]/30 rounded-sm">
+                  À VISTA (-20%)
+                </span>
+              </div>
+
+              <!-- Mini-seletor Espelhado de Condição de Pagamento -->
+              <div class="mb-6">
+                <div class="font-mono text-[10px] uppercase tracking-[0.16em] text-[#9E9EA8] mb-2">
+                  Condição de Pagamento (Sincronizada)
+                </div>
+                <div class="grid grid-cols-2 p-1 border border-[#242429] bg-[#111114] rounded-sm" role="group" aria-label="Alternar condição de pagamento no resumo">
+                  <button type="button" id="mini-pay-vista" onclick="setPaymentMode('vista')" class="py-2 px-2.5 font-mono text-[11px] font-bold uppercase tracking-wider rounded-sm bg-[#FF5500] text-[#0A0A0A] transition-all cursor-pointer">
+                    À Vista (-20%)
+                  </button>
+                  <button type="button" id="mini-pay-prazo" onclick="setPaymentMode('prazo')" class="py-2 px-2.5 font-mono text-[11px] font-medium uppercase tracking-wider rounded-sm text-[#9E9EA8] hover:text-[#F5F5F3] transition-all cursor-pointer">
+                    A Prazo (50/50 | 6x)
+                  </button>
+                </div>
+              </div>
+
+              <!-- Lista de Itens Selecionados -->
+              <div id="summary-items" class="space-y-3 mb-8 text-sm">
+                <!-- Preenchido via JS -->
+              </div>
+            </div>
+
+            <div>
+              <!-- Bloco de Total -->
+              <div class="pt-6 border-t border-[#242429] mb-6">
+                <div class="flex items-baseline justify-between gap-4 mb-2">
+                  <span class="font-mono text-xs uppercase tracking-wider text-[#9E9EA8]">Investimento Total</span>
+                  <span id="summary-total" class="price-figure font-bold text-[#F5F5F3]">R$ 14.200</span>
+                </div>
+                <p id="summary-condition-detail" class="text-xs text-[#9E9EA8] font-light leading-relaxed">
+                  <!-- Preenchido via JS -->
+                </p>
+              </div>
+
+              <!-- Botão Principal WhatsApp -->
+              <a id="btn-whatsapp-approve" href="#" target="_blank" rel="noopener noreferrer" class="btn-orange w-full py-4 px-6 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-3 rounded-sm">
+                <span>Aprovar Proposta no WhatsApp</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+
+              <p class="text-[11px] text-[#9E9EA8] text-center mt-3 font-mono">
+                Ao clicar, você envia esta configuração exata para o Guilherme (GVL Studio) iniciar o contrato.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 03 — METODOLOGIA EM ETAPAS (ENTREGÁVEIS + BENEFÍCIOS)         -->
+    <!-- ===================================================================== -->
+    <section class="section-spacing border-b border-[#242429] reveal-section">
+      <div class="container-fluid">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+          <div>
+            <span class="font-mono text-xs uppercase tracking-[0.2em] text-[#FF5500] block mb-3">03 // Processo Criativo &amp; Técnico</span>
+            <h2 class="section-title font-semibold text-[#F5F5F3]">Metodologia em Etapas<span class="text-[#FF5500]">.</span></h2>
+          </div>
+          <p class="text-sm sm:text-base text-[#9E9EA8] max-w-md font-light">
+            Um fluxo estruturado com aprovações claras em cada marco, garantindo previsibilidade executiva do início ao lançamento.
+          </p>
+        </div>
+
+        <!-- Abas Interativas das Etapas -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-[#242429] bg-[#111114] mb-6" role="tablist">
+          <button type="button" role="tab" aria-selected="true" data-tab="0" class="tab-btn p-5 text-left border-b sm:border-r border-[#242429] transition-colors cursor-pointer">
+            <div class="tab-num font-mono text-xs text-[#9E9EA8] mb-1">ETAPA 01</div>
+            <div class="font-display font-semibold text-sm sm:text-base text-[#F5F5F3]">Imersão &amp; Estratégia</div>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-tab="1" class="tab-btn p-5 text-left border-b lg:border-r border-[#242429] transition-colors cursor-pointer">
+            <div class="tab-num font-mono text-xs text-[#9E9EA8] mb-1">ETAPA 02</div>
+            <div class="font-display font-semibold text-sm sm:text-base text-[#F5F5F3]">Universo Verbal &amp; Visual</div>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-tab="2" class="tab-btn p-5 text-left border-b sm:border-b-0 sm:border-r border-[#242429] transition-colors cursor-pointer">
+            <div class="tab-num font-mono text-xs text-[#9E9EA8] mb-1">ETAPA 03</div>
+            <div class="font-display font-semibold text-sm sm:text-base text-[#F5F5F3]">UI Figma &amp; Desenvolvimento</div>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-tab="3" class="tab-btn p-5 text-left transition-colors cursor-pointer">
+            <div class="tab-num font-mono text-xs text-[#9E9EA8] mb-1">ETAPA 04 (OPCIONAL)</div>
+            <div class="font-display font-semibold text-sm sm:text-base text-[#F5F5F3]">Gestão &amp; Evolução Contínua</div>
+          </button>
+        </div>
+
+        <!-- Painel de Conteúdo da Etapa Ativa -->
+        <div id="tab-content-panel" class="border border-[#242429] bg-[#111114] p-7 sm:p-12">
+          <!-- Renderizado via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 04 — CRONOGRAMA & CONDIÇÕES DE PAGAMENTO                      -->
+    <!-- ===================================================================== -->
+    <section class="section-spacing border-b border-[#242429] reveal-section">
+      <div class="container-fluid">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <!-- Cronograma Dinâmico -->
+          <div class="lg:col-span-6">
+            <span class="font-mono text-xs uppercase tracking-[0.2em] text-[#FF5500] block mb-3">04 // Previsibilidade</span>
+            <h2 class="section-title font-semibold text-[#F5F5F3] mb-4">Cronograma Estimado<span class="text-[#FF5500]">.</span></h2>
+            <p class="text-sm text-[#9E9EA8] font-light mb-8">
+              Prazos calculados automaticamente conforme o pacote selecionado (<span id="timeline-pkg-name" class="text-[#F5F5F3] font-medium">Tier 2 — Universo de Marca + LP</span>).
+            </p>
+
+            <div id="timeline-list" class="border border-[#242429] bg-[#111114] divide-y divide-[#242429]">
+              <!-- Renderizado via JS -->
+            </div>
+          </div>
+
+          <!-- Condições Comerciais & Formas de Pagamento -->
+          <div class="lg:col-span-6">
+            <span class="font-mono text-xs uppercase tracking-[0.2em] text-[#FF5500] block mb-3">05 // Condições Comerciais</span>
+            <h2 class="section-title font-semibold text-[#F5F5F3] mb-4">Opções de Pagamento<span class="text-[#FF5500]">.</span></h2>
+            <p class="text-sm text-[#9E9EA8] font-light mb-8">
+              Flexibilidade financeira para adequar o fluxo de caixa da Vértice ao início imediato do projeto.
+            </p>
+
+            <div class="space-y-4">
+              <!-- Opção 1 -->
+              <div class="p-6 border border-[#FF5500]/50 bg-[#FF5500]/[0.05]">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#FF5500]">Opção 01 • À Vista (20% OFF)</span>
+                  <span class="font-mono text-[10px] uppercase px-2 py-0.5 bg-[#FF5500] text-[#09090B] font-bold">Maior Economia</span>
+                </div>
+                <p class="text-sm text-[#F5F5F3] font-light leading-relaxed">
+                  Desconto direto de <strong>20% sobre o valor total</strong> para pagamento integral na aprovação via PIX ou transferência bancária.
+                </p>
+              </div>
+
+              <!-- Opção 2 -->
+              <div class="p-6 border border-[#242429] bg-[#111114]">
+                <div class="font-mono text-xs font-semibold uppercase tracking-wider text-[#F5F5F3] mb-2">Opção 02 • Modelo Padrão 50/50</div>
+                <p class="text-sm text-[#9E9EA8] font-light leading-relaxed">
+                  <strong>50% de sinal</strong> na assinatura do contrato para reserva de agenda e kick-off imediato + <strong>50% na entrega final</strong> dos arquivos e publicação.
+                </p>
+              </div>
+
+              <!-- Opção 3 -->
+              <div class="p-6 border border-[#242429] bg-[#111114]">
+                <div class="font-mono text-xs font-semibold uppercase tracking-wider text-[#F5F5F3] mb-2">Opção 03 • Parcelado em até 6x</div>
+                <p class="text-sm text-[#9E9EA8] font-light leading-relaxed">
+                  Parcele o investimento a prazo em <strong>até 6x sem juros</strong> no Cartão de Crédito ou Boleto Bancário.
+                </p>
+              </div>
+            </div>
+
+            <!-- Meios Aceitos -->
+            <div class="mt-6 pt-6 border-t border-[#242429] flex flex-wrap items-center justify-between gap-4">
+              <span class="font-mono text-xs text-[#9E9EA8] uppercase tracking-wider">Meios Aceitos:</span>
+              <div class="flex flex-wrap gap-2">
+                <span class="font-mono text-xs px-3 py-1.5 border border-[#242429] bg-[#111114] text-[#F5F5F3]">PIX</span>
+                <span class="font-mono text-xs px-3 py-1.5 border border-[#242429] bg-[#111114] text-[#F5F5F3]">Cartão de Crédito</span>
+                <span class="font-mono text-xs px-3 py-1.5 border border-[#242429] bg-[#111114] text-[#F5F5F3]">Boleto Bancário</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECTION 05 — PROVA SOCIAL & RECONHECIMENTO                            -->
+    <!-- ===================================================================== -->
+    <section class="section-spacing reveal-section">
+      <div class="container-fluid">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+          <div>
+            <span class="font-mono text-xs uppercase tracking-[0.2em] text-[#FF5500] block mb-3">06 // Credibilidade Comprovada</span>
+            <h2 class="section-title font-semibold text-[#F5F5F3]">Quem já construiu legado conosco<span class="text-[#FF5500]">.</span></h2>
+          </div>
+
+          <!-- Selo Trustindex -->
+          <div class="inline-flex items-center gap-4 px-5 py-3.5 border border-[#242429] bg-[#111114]">
+            <div class="font-mono text-sm tracking-widest text-[#FF5500]">★★★★★ 5.0</div>
+            <div class="border-l border-[#242429] pl-4">
+              <div class="font-display text-xs font-semibold text-[#F5F5F3] uppercase tracking-wider">Top Rated Service</div>
+              <div class="font-mono text-[10px] text-[#9E9EA8] uppercase">Verified by Trustindex</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Depoimento 1: Alana Damaris (Arquiteta) -->
+          <article class="p-8 border border-[#242429] bg-[#111114] flex flex-col justify-between hover:border-[#FF5500]/40 transition-colors">
+            <p class="text-base text-[#F5F5F3] font-light leading-relaxed mb-8">
+              “Excelente trabalho!!! Fiquei impressionada com o resultado!”
+            </p>
+            <div class="flex items-center justify-between pt-4 border-t border-[#242429]">
+              <div>
+                <h3 class="font-display font-semibold text-sm text-[#F5F5F3]">Alana Damaris</h3>
+                <p class="font-mono text-xs text-[#9E9EA8]">Arquiteta</p>
+              </div>
+              <span class="font-mono text-xs text-[#FF5500]">★★★★★</span>
+            </div>
+          </article>
+
+          <!-- Depoimento 2: Andressa Schulz -->
+          <article class="p-8 border border-[#242429] bg-[#111114] flex flex-col justify-between hover:border-[#FF5500]/40 transition-colors">
+            <p class="text-sm sm:text-base text-[#F5F5F3] font-light leading-relaxed mb-8">
+              “Gostaria de te agradecer pelo trabalho incrível que fez. A identidade que você criou realmente capturou a essência do que eu queria transmitir, e o resultado superou minhas expectativas. Seu talento e dedicação ficaram evidentes em cada detalhe, e estou muito feliz com o resultado final.”
+            </p>
+            <div class="flex items-center justify-between pt-4 border-t border-[#242429]">
+              <div>
+                <h3 class="font-display font-semibold text-sm text-[#F5F5F3]">Andressa Schulz</h3>
+                <p class="font-mono text-xs text-[#9E9EA8]">Psicóloga</p>
+              </div>
+              <span class="font-mono text-xs text-[#FF5500]">★★★★★</span>
+            </div>
+          </article>
+
+          <!-- Depoimento 3: Emerson Euzébio -->
+          <article class="p-8 border border-[#242429] bg-[#111114] flex flex-col justify-between hover:border-[#FF5500]/40 transition-colors">
+            <p class="text-sm sm:text-base text-[#F5F5F3] font-light leading-relaxed mb-8">
+              “Guilherme, ficou show! Que maravilha, agora eu vejo com mais qualidade. Obrigado por agregar valor através do seu trabalho e ser sempre solícito.”
+            </p>
+            <div class="flex items-center justify-between pt-4 border-t border-[#242429]">
+              <div>
+                <h3 class="font-display font-semibold text-sm text-[#F5F5F3]">Emerson Euzébio</h3>
+                <p class="font-mono text-xs text-[#9E9EA8]">Professor, Ator e Coreógrafo — Cia Mudança</p>
+              </div>
+              <span class="font-mono text-xs text-[#FF5500]">★★★★★</span>
+            </div>
+          </article>
+
+          <!-- Depoimento 4: Isabely Vieira -->
+          <article class="p-8 border border-[#242429] bg-[#111114] flex flex-col justify-between hover:border-[#FF5500]/40 transition-colors">
+            <p class="text-base text-[#F5F5F3] font-light leading-relaxed mb-8">
+              “Atendimento perfeito, superou minhas expectativas!”
+            </p>
+            <div class="flex items-center justify-between pt-4 border-t border-[#242429]">
+              <div>
+                <h3 class="font-display font-semibold text-sm text-[#F5F5F3]">Isabely Vieira</h3>
+                <p class="font-mono text-xs text-[#9E9EA8]">Sócia Proprietária — ZK Shoes</p>
+              </div>
+              <span class="font-mono text-xs text-[#FF5500]">★★★★★</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- FOOTER                                                                -->
+  <!-- ===================================================================== -->
+  <footer class="border-t border-[#242429] bg-[#070709] py-12">
+    <div class="container-fluid flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div>
+        <div class="font-display font-bold text-base text-[#F5F5F3] tracking-tight mb-1">
+          GVL Studio <span class="text-[#FF5500]">—</span> Generating Visual Legacies
+        </div>
+        <p class="font-mono text-xs text-[#9E9EA8]">
+          Proposta exclusiva elaborada para Vértice Arquitetura &amp; Urbanismo • 19/11/2026
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-6 font-mono text-xs text-[#9E9EA8]">
+        <a href="https://gvlstudio.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#FF5500] transition-colors">
+          gvlstudio.com ↗
+        </a>
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#FF5500] transition-colors">
+          LinkedIn: GVL Studio ↗
+        </a>
+        <a href="https://wa.me/5518981484150" target="_blank" rel="noopener noreferrer" class="text-[#F5F5F3] hover:text-[#FF5500] transition-colors">
+          +55 18 98148-4150
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT: MOTOR INTERATIVO DE PRECIFICAÇÃO, ETAPAS E WHATSAPP       -->
+  <!-- ===================================================================== -->
+  <script>
+    // Dados da Proposta (Porte 2 = Multiplicador 2.0x | Cenário 1: Marca/Rebranding)
+    const CLIENT_NAME = "Vértice Arquitetura & Urbanismo";
+    const WHATSAPP_PHONE = "5518981484150";
+
+    const PACKAGES = [
+      {
+        id: 'tier3',
+        tierTag: 'OPÇÃO 01 // ANCORAGEM',
+        name: 'Tier 3 — Ecossistema Flagship',
+        subtitle: 'Universo de Marca Completo + Website Institucional (até 5 páginas)',
+        timeline: '10 a 14 semanas',
+        prazoPrice: 27000,
+        vistaPrice: 21600,
+        recommended: false,
+        includesSocialKit: true,
+        features: [
+          'Todo o Universo Estratégico, Verbal e Visual do Tier 2',
+          'Família de ícones proprietários + Motion básico do logotipo',
+          'Kit de Templates para Redes Sociais (15 templates inclusos)',
+          '15 aplicações realistas + Brandbook extenso',
+          'Website Institucional Completo (até 5 págs, UX/UI Figma, Dev, Core Web Vitals & SEO Técnico)'
+        ],
+        schedule: [
+          { phase: 'Fase 01 — Imersão, Pesquisa & Estratégia de Posicionamento', duration: '2 semanas' },
+          { phase: 'Fase 02 — Universo Verbal, Manifesto & Território de Palavras', duration: '2 semanas' },
+          { phase: 'Fase 03 — Identidade Visual Flagship, Ícones, Motion & Brandbook', duration: '4 semanas' },
+          { phase: 'Fase 04 — Arquitetura UX, UI Design no Figma & Dev Website (5 págs)', duration: '4 a 6 semanas' }
+        ]
+      },
+      {
+        id: 'tier2',
+        tierTag: 'OPÇÃO 02 // RECOMENDADO',
+        name: 'Tier 2 — Universo de Marca + LP',
+        subtitle: 'Posicionamento Estratégico, Universo Verbal, Identidade Visual & Landing Page',
+        timeline: '6 a 8 semanas',
+        prazoPrice: 15000,
+        vistaPrice: 12000,
+        recommended: true,
+        includesSocialKit: false,
+        features: [
+          'Pesquisa de mercado, matriz de posicionamento & Personas (dores/objeções)',
+          'Golden Circle, Jornada do Herói & Arquétipos da marca',
+          'Universo Verbal completo (Tom de Voz, Manifesto, Taglines, Pilares & Palavras)',
+          'Direção Fotográfica, Identidade Visual completa & Brandbook',
+          '1 Landing Page de Alta Conversão (Figma + Dev + Pixel/GA4)'
+        ],
+        schedule: [
+          { phase: 'Fase 01 — Diagnóstico Profundo, Personas & Posicionamento', duration: '1,5 semana' },
+          { phase: 'Fase 02 — Universo Verbal (Manifesto, Tom de Voz & Taglines)', duration: '1,5 semana' },
+          { phase: 'Fase 03 — Identidade Visual Completa, Aplicações & Brandbook', duration: '2 a 3 semanas' },
+          { phase: 'Fase 04 — UI Design Figma & Desenvolvimento da Landing Page', duration: '1,5 a 2 semanas' }
+        ]
+      },
+      {
+        id: 'tier1',
+        tierTag: 'OPÇÃO 03 // ENTRADA VISUAL',
+        name: 'Tier 1 — Identidade Visual Estratégica',
+        subtitle: 'Sistema visual autoral para profissionalizar a apresentação do escritório',
+        timeline: '3 a 4 semanas',
+        prazoPrice: 7500,
+        vistaPrice: 6000,
+        recommended: false,
+        includesSocialKit: false,
+        features: [
+          'Diagnóstico visual, análise de concorrentes & mapa mental',
+          'DNA visual & Moodboard conceitual',
+          'Logotipo principal + variações (horizontal, símbolo, monocromática)',
+          'Sistema cromático (HEX, RGB, CMYK, Pantone), tipografia & grafismos',
+          '8 aplicações realistas + Guia Rápido de Uso (PDF)',
+          'Nota: Não inclui estratégia verbal profunda nem Landing Page/Site'
+        ],
+        schedule: [
+          { phase: 'Fase 01 — Imersão Visual, Concorrentes & Moodboard', duration: '1 semana' },
+          { phase: 'Fase 02 — Criação do Logotipo, Variações & Sistema Cromático', duration: '1,5 semana' },
+          { phase: 'Fase 03 — 8 Aplicações Realistas & Guia Rápido de Uso (PDF)', duration: '1 a 1,5 semana' }
+        ]
+      }
+    ];
+
+    const ADDONS = [
+      {
+        id: 'social',
+        name: 'Kit Social Media (15 templates Figma/Canva)',
+        desc: 'Templates editáveis para portfólio de obras, bastidores e posicionamento.',
+        prazoPrice: 1250,
+        vistaPrice: 1000,
+        checked: true
+      },
+      {
+        id: 'copy',
+        name: 'Copywriting Web Completo (até 5 págs)',
+        desc: 'Redação persuasiva focada em conversão para decisores corporativos e alto padrão.',
+        prazoPrice: 1500,
+        vistaPrice: 1200,
+        checked: true
+      },
+      {
+        id: 'naming',
+        name: 'Naming + Checagem INPI',
+        desc: 'Estudo de naming e pesquisa prévia de disponibilidade junto ao INPI.',
+        prazoPrice: 2500,
+        vistaPrice: 2000,
+        checked: false
+      },
+      {
+        id: 'packaging',
+        name: 'Design de Embalagens / Kits de Entrega (até 3 SKUs)',
+        desc: 'Criação visual e fechamento técnico para kits de entrega de chaves ou amostras.',
+        prazoPrice: 3000,
+        vistaPrice: 2400,
+        checked: false
+      }
+    ];
+
+    const METHODOLOGY_TABS = [
+      {
+        num: 'ETAPA 01',
+        title: 'Imersão & Estratégia de Posicionamento',
+        about: 'Mergulhamos na operação da Vértice Arquitetura para mapear diferenciais competitivos, perfil dos clientes de alto ticket e oportunidades de diferenciação frente aos escritórios tradicionais.',
+        deliverables: [
+          'Workshop de imersão e análise de concorrência regional/nacional',
+          'Matriz de posicionamento e definição de Arquétipos de Marca',
+          'Mapeamento detalhado de Personas (dores, desejos e objeções de contratação)',
+          'Estruturação do Golden Circle e narrativa estratégica'
+        ],
+        benefits: [
+          'Clareza absoluta sobre como defender o valor dos projetos em reuniões comerciais',
+          'Alinhamento estratégico entre os sócios antes de qualquer decisão estética',
+          'Base sólida para filtrar clientes desqualificados e atrair obras maiores'
+        ]
+      },
+      {
+        num: 'ETAPA 02',
+        title: 'Universo Verbal & Identidade Visual',
+        about: 'Traduzimos a estratégia em linguagem proprietária e estética arquitetônica atemporal, construindo um sistema visual flexível para pranchas, propostas, fachadas e digital.',
+        deliverables: [
+          'Universo Verbal: Tom de Voz, Manifesto, Taglines e Território de Palavras',
+          'Logotipo principal, assinaturas secundárias e símbolo proprietário',
+          'Sistema cromático completo (Pantone, CMYK, RGB, HEX) e hierarquia tipográfica',
+          'Direção fotográfica, grafismos/patterns, aplicações realistas e Brandbook'
+        ],
+        benefits: [
+          'Apresentações comerciais e propostas com impacto visual imediato',
+          'Padronização completa para os 18 colaboradores operarem com autonomia',
+          'Identidade duradoura que não depende de modismos passageiros'
+        ]
+      },
+      {
+        num: 'ETAPA 03',
+        title: 'Arquitetura Digital, UI no Figma & Desenvolvimento',
+        about: 'Projetamos a experiência digital da Vértice com foco em exibir o portfólio com sofisticação e conduzir o visitante até o agendamento de uma reunião de diagnóstico.',
+        deliverables: [
+          'Arquitetura de informação e wireframe focado em conversão',
+          'Protótipo interativo em alta fidelidade no Figma (Desktop + Mobile)',
+          'Desenvolvimento responsivo otimizado (Core Web Vitals e SEO Técnico On-Page)',
+          'Integração com WhatsApp, formulários inteligentes, Pixel e Google Analytics 4'
+        ],
+        benefits: [
+          'Visualização e aprovação total do layout antes do desenvolvimento',
+          'Carregamento ultrarrápido mesmo com fotografias arquitetônicas em alta resolução',
+          'Ativo digital pronto para receber campanhas de tráfego pago qualificado'
+        ]
+      },
+      {
+        num: 'ETAPA 04 (CONTRAPARTIDA OPCIONAL)',
+        title: 'Gestão & Evolução Contínua do Site',
+        about: 'Após o lançamento, oferecemos acompanhamento técnico mensal opcional para garantir que o ambiente digital da Vértice permaneça seguro, rápido e sempre atualizado com novos projetos.',
+        deliverables: [
+          'Monitoramento contínuo de performance, segurança e backups periódicos',
+          'Atualizações técnicas de sistema, plugins e certificados SSL',
+          'Suporte dedicado para ajustes pontuais e publicação de novos cases',
+          'Investimento opcional: R$ 200/mês (1º mês totalmente isento após a entrega)'
+        ],
+        benefits: [
+          'Tranquilidade operacional sem sobrecarregar a equipe interna de arquitetura',
+          'Site sempre atualizado com as obras mais recentes do escritório',
+          'Sem fidelidade obrigatória: contrate apenas se fizer sentido após o 1º mês gratuito'
+        ]
+      }
+    ];
+
+    // Estado da Aplicação
+    let state = {
+      paymentMode: 'vista', // 'vista' | 'prazo'
+      selectedPkgId: 'tier2',
+      extraPages: 0,
+      activeTab: 0
+    };
+
+    function formatBRL(value) {
+      return value.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+        maximumFractionDigits: 0
+      });
+    }
+
+    function getActivePackage() {
+      return PACKAGES.find(p => p.id === state.selectedPkgId) || PACKAGES[1];
+    }
+
+    function renderPackages() {
+      const container = document.getElementById('packages-grid');
+      const isVista = state.paymentMode === 'vista';
+
+      container.innerHTML = PACKAGES.map(pkg => {
+        const isSelected = pkg.id === state.selectedPkgId;
+        const currentPrice = isVista ? pkg.vistaPrice : pkg.prazoPrice;
+        const pkgSavings = pkg.prazoPrice - pkg.vistaPrice;
+
+        const quickSwitchHTML = isVista
+          ? `
+            <div class="font-mono text-xs text-[#FF5500] mt-2">
+              ✓ Economia de ${formatBRL(pkgSavings)} aplicada
+            </div>
+            <div class="flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-[#9E9EA8] mt-1.5">
+              <span>Valor a prazo: ${formatBRL(pkg.prazoPrice)}</span>
+              <button type="button"
+                      onclick="event.stopPropagation(); setPaymentMode('prazo');"
+                      class="text-[#F5F5F3] underline decoration-[#FF5500] underline-offset-4 hover:text-[#FF5500] transition-colors cursor-pointer">
+                Ver a prazo ⇄
+              </button>
+            </div>
+          `
+          : `
+            <div class="font-mono text-xs text-[#9E9EA8] mt-2">
+              50/50 (${formatBRL(pkg.prazoPrice / 2)}) ou 6x de ${formatBRL(Math.round(pkg.prazoPrice / 6))}
+            </div>
+            <div class="flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-[#9E9EA8] mt-1.5">
+              <span>À vista: <strong class="text-[#F5F5F3]">${formatBRL(pkg.vistaPrice)}</strong></span>
+              <button type="button"
+                      onclick="event.stopPropagation(); setPaymentMode('vista');"
+                      class="text-[#FF5500] font-semibold underline underline-offset-4 hover:text-[#FF6D24] transition-colors cursor-pointer">
+                Aplicar 20% OFF ⇄
+              </button>
+            </div>
+          `;
+
+        const borderClasses = isSelected
+          ? 'border-[#FF5500] bg-[#141418] ring-1 ring-[#FF5500]'
+          : pkg.recommended
+            ? 'border-[#FF5500]/50 bg-[#111114] hover:border-[#FF5500]'
+            : 'border-[#242429] bg-[#111114] hover:border-[#44444F]';
+
+        return `
+          <div onclick="selectPackage('${pkg.id}')" role="button" tabindex="0" aria-pressed="${isSelected}"
+               onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectPackage('${pkg.id}');}"
+               class="pkg-card relative p-7 sm:p-9 border ${borderClasses} flex flex-col justify-between cursor-pointer select-none">
+            
+            ${pkg.recommended ? `
+              <div class="absolute -top-3.5 left-7 bg-[#FF5500] text-[#0A0A0A] font-mono text-[10px] font-bold uppercase tracking-[0.16em] px-3 py-1 rounded-sm">
+                ★ Recomendado para o seu momento
+              </div>
+            ` : ''}
+
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4 pt-1">
+                <span class="font-mono text-[11px] uppercase tracking-wider ${isSelected ? 'text-[#FF5500]' : 'text-[#9E9EA8]'}">
+                  ${pkg.tierTag}
+                </span>
+                <span class="font-mono text-[11px] px-2.5 py-0.5 border border-[#242429] bg-[#0A0A0A] text-[#F5F5F3]">
+                  ${pkg.timeline}
+                </span>
+              </div>
+
+              <h3 class="font-display text-xl sm:text-2xl font-semibold text-[#F5F5F3] mb-2">
+                ${pkg.name}
+              </h3>
+              <p class="text-xs sm:text-sm text-[#9E9EA8] font-light leading-relaxed mb-7">
+                ${pkg.subtitle}
+              </p>
+
+              <!-- Preço + Link Rápido de Alternância -->
+              <div class="pb-7 mb-7 border-b border-[#242429]">
+                <div class="flex items-baseline gap-2">
+                  <span class="price-figure font-bold text-[#F5F5F3]">${formatBRL(currentPrice)}</span>
+                  <span class="font-mono text-xs text-[#FF5500] uppercase font-semibold">${isVista ? 'à vista' : 'a prazo'}</span>
+                </div>
+                ${quickSwitchHTML}
+              </div>
+
+              <!-- Entregáveis -->
+              <ul class="space-y-3 mb-8">
+                ${pkg.features.map(item => `
+                  <li class="flex items-start gap-3 text-xs sm:text-sm text-[#F5F5F3]/90 font-light leading-relaxed">
+                    <span class="text-[#FF5500] font-mono mt-0.5">▹</span>
+                    <span>${item}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+
+            <!-- Indicador de Seleção -->
+            <div class="pt-4 border-t border-[#242429] flex items-center justify-between">
+              <span class="font-mono text-xs uppercase tracking-wider ${isSelected ? 'text-[#FF5500] font-semibold' : 'text-[#9E9EA8]'}">
+                ${isSelected ? '● Pacote Selecionado' : '○ Clique para selecionar'}
+              </span>
+              <span class="font-mono text-xs ${isSelected ? 'text-[#FF5500]' : 'text-[#9E9EA8]'}">→</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderAddons() {
+      const container = document.getElementById('addons-list');
+      const isVista = state.paymentMode === 'vista';
+      const activePkg = getActivePackage();
+
+      const standardAddonsHTML = ADDONS.map(addon => {
+        const isIncludedInTier3 = addon.id === 'social' && activePkg.includesSocialKit;
+        const price = isVista ? addon.vistaPrice : addon.prazoPrice;
+        const isChecked = isIncludedInTier3 ? true : addon.checked;
+
+        return `
+          <label class="flex items-start justify-between gap-4 p-4 border ${isChecked ? 'border-[#FF5500]/50 bg-[#FF5500]/[0.04]' : 'border-[#242429] bg-[#0D0D10]'} transition-colors ${isIncludedInTier3 ? 'cursor-default' : 'cursor-pointer hover:border-[#44444F]'}">
+            <div class="flex items-start gap-3.5">
+              <input type="checkbox"
+                     ${isChecked ? 'checked' : ''}
+                     ${isIncludedInTier3 ? 'disabled' : ''}
+                     onchange="toggleAddon('${addon.id}')"
+                     class="mt-1 w-4 h-4 accent-[#FF5500] cursor-pointer" />
+              <div>
+                <div class="font-display text-sm sm:text-base font-medium text-[#F5F5F3]">
+                  ${addon.name}
+                </div>
+                <p class="text-xs text-[#9E9EA8] font-light mt-0.5 leading-relaxed">
+                  ${addon.desc}
+                </p>
+              </div>
+            </div>
+            <div class="text-right shrink-0">
+              ${isIncludedInTier3
+                ? `<span class="font-mono text-[11px] font-bold text-[#FF5500] uppercase">Incluso (R$ 0)</span>`
+                : `<span class="font-mono text-sm font-semibold text-[#F5F5F3]">+ ${formatBRL(price)}</span>`
+              }
+            </div>
+          </label>
+        `;
+      }).join('');
+
+      // Contador de Páginas Extras
+      const extraPageUnit = isVista ? 500 : 625;
+      const extraPageTotal = state.extraPages * extraPageUnit;
+
+      const extraPagesHTML = `
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border ${state.extraPages > 0 ? 'border-[#FF5500]/50 bg-[#FF5500]/[0.04]' : 'border-[#242429] bg-[#0D0D10]'}">
+          <div>
+            <div class="font-display text-sm sm:text-base font-medium text-[#F5F5F3]">
+              Página Extra no Website (além das 5 págs)
+            </div>
+            <p class="text-xs text-[#9E9EA8] font-light mt-0.5">
+              ${formatBRL(extraPageUnit)} por página adicional (${isVista ? 'à vista' : 'a prazo'}).
+            </p>
+          </div>
+          <div class="flex items-center justify-between sm:justify-end gap-4">
+            <div class="inline-flex items-center border border-[#242429] bg-[#111114]">
+              <button type="button" onclick="changeExtraPages(-1)" aria-label="Remover página extra" class="w-8 h-8 font-mono text-sm text-[#F5F5F3] hover:bg-[#242429] transition-colors cursor-pointer">-</button>
+              <span class="w-10 text-center font-mono text-xs font-semibold text-[#F5F5F3]">${state.extraPages}</span>
+              <button type="button" onclick="changeExtraPages(1)" aria-label="Adicionar página extra" class="w-8 h-8 font-mono text-sm text-[#F5F5F3] hover:bg-[#242429] transition-colors cursor-pointer">+</button>
+            </div>
+            <span class="font-mono text-sm font-semibold text-[#F5F5F3] min-w-[82px] text-right">
+              + ${formatBRL(extraPageTotal)}
+            </span>
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = standardAddonsHTML + extraPagesHTML;
+    }
+
+    function renderSummaryAndTimeline() {
+      const isVista = state.paymentMode === 'vista';
+      const pkg = getActivePackage();
+      const pkgPrice = isVista ? pkg.vistaPrice : pkg.prazoPrice;
+
+      let totalVista = pkg.vistaPrice;
+      let totalPrazo = pkg.prazoPrice;
+      let selectedAddonsSummary = [];
+
+      ADDONS.forEach(addon => {
+        const isIncludedInTier3 = addon.id === 'social' && pkg.includesSocialKit;
+        if (isIncludedInTier3) {
+          selectedAddonsSummary.push({
+            name: `${addon.name} (Incluso no Tier 3)`,
+            price: 0,
+            included: true
+          });
+        } else if (addon.checked) {
+          totalVista += addon.vistaPrice;
+          totalPrazo += addon.prazoPrice;
+          selectedAddonsSummary.push({
+            name: addon.name,
+            price: isVista ? addon.vistaPrice : addon.prazoPrice,
+            included: false
+          });
+        }
+      });
+
+      if (state.extraPages > 0) {
+        const extraV = state.extraPages * 500;
+        const extraP = state.extraPages * 625;
+        totalVista += extraV;
+        totalPrazo += extraP;
+        selectedAddonsSummary.push({
+          name: `${state.extraPages}x Página(s) Extra(s) no Website`,
+          price: isVista ? extraV : extraP,
+          included: false
+        });
+      }
+
+      const finalTotal = isVista ? totalVista : totalPrazo;
+      const savings = totalPrazo - totalVista;
+
+      // Atualiza Badge
+      const badgeEl = document.getElementById('summary-badge');
+      badgeEl.textContent = isVista ? 'À VISTA (20% OFF)' : 'A PRAZO (50/50 OU 6X)';
+
+      // Atualiza Itens do Resumo
+      const itemsEl = document.getElementById('summary-items');
+      let itemsHTML = `
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="font-medium text-[#F5F5F3]">${pkg.name}</div>
+            <div class="font-mono text-[11px] text-[#9E9EA8]">Prazo: ${pkg.timeline}</div>
+          </div>
+          <span class="font-mono text-sm font-medium text-[#F5F5F3] shrink-0">${formatBRL(pkgPrice)}</span>
+        </div>
+      `;
+
+      selectedAddonsSummary.forEach(item => {
+        itemsHTML += `
+          <div class="flex items-start justify-between gap-4 text-xs sm:text-sm pt-2 border-t border-[#242429]/60">
+            <span class="text-[#9E9EA8] font-light">+ ${item.name}</span>
+            <span class="font-mono ${item.included ? 'text-[#FF5500]' : 'text-[#F5F5F3]'} shrink-0">
+              ${item.included ? 'R$ 0' : formatBRL(item.price)}
+            </span>
+          </div>
+        `;
+      });
+
+      itemsEl.innerHTML = itemsHTML;
+
+      // Atualiza Total & Condição Detalhada
+      document.getElementById('summary-total').textContent = formatBRL(finalTotal);
+
+      const conditionEl = document.getElementById('summary-condition-detail');
+      if (isVista) {
+        conditionEl.innerHTML = `Pagamento integral à vista via PIX com <strong class="text-[#FF5500] font-medium">20% de desconto aplicado</strong> (economia imediata de ${formatBRL(savings)} em relação ao valor a prazo de ${formatBRL(totalPrazo)}).`;
+      } else {
+        const half = finalTotal / 2;
+        const sixInstallments = Math.round(finalTotal / 6);
+        conditionEl.innerHTML = `Modelo 50/50: <strong class="text-[#F5F5F3] font-medium">${formatBRL(half)} de sinal</strong> na aprovação + <strong class="text-[#F5F5F3] font-medium">${formatBRL(half)} na entrega</strong> — ou em até <strong class="text-[#F5F5F3] font-medium">6x sem juros de ${formatBRL(sixInstallments)}</strong>.`;
+      }
+
+      // Atualiza Link do WhatsApp
+      const addonsText = selectedAddonsSummary.length > 0
+        ? selectedAddonsSummary.map(a => `• ${a.name}: ${a.included ? 'Incluso' : formatBRL(a.price)}`).join('\n')
+        : '• Nenhum módulo extra adicionado';
+
+      const paymentLabel = isVista
+        ? `À Vista com 20% de desconto (${formatBRL(finalTotal)})`
+        : `A Prazo — 50/50 ou até 6x sem juros (${formatBRL(finalTotal)})`;
+
+      const message = [
+        `Olá Guilherme! Avaliei a proposta da *GVL Studio* para a *${CLIENT_NAME}* e gostaria de aprovar o projeto:`,
+        ``,
+        `*Escopo Selecionado:* ${pkg.name} (${pkg.timeline})`,
+        `*Condição de Pagamento:* ${paymentLabel}`,
+        `*Módulos Extras:*`,
+        addonsText,
+        ``,
+        `*Investimento Total:* ${formatBRL(finalTotal)}`,
+        ``,
+        `Podemos seguir com o contrato e o kick-off?`
+      ].join('\n');
+
+      const whatsappBtn = document.getElementById('btn-whatsapp-approve');
+      whatsappBtn.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+
+      // Atualiza Cronograma Dinâmico
+      document.getElementById('timeline-pkg-name').textContent = `${pkg.name} (${pkg.timeline})`;
+      const timelineList = document.getElementById('timeline-list');
+      timelineList.innerHTML = pkg.schedule.map((step, idx) => `
+        <div class="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div class="flex items-start gap-3">
+            <span class="font-mono text-xs text-[#FF5500] mt-0.5">0${idx + 1}</span>
+            <span class="text-sm text-[#F5F5F3] font-light">${step.phase}</span>
+          </div>
+          <span class="font-mono text-xs text-[#9E9EA8] sm:text-right shrink-0 pl-6 sm:pl-0">${step.duration}</span>
+        </div>
+      `).join('');
+    }
+
+    function renderMethodologyTab() {
+      const tab = METHODOLOGY_TABS[state.activeTab];
+      const panel = document.getElementById('tab-content-panel');
+
+      panel.innerHTML = `
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          <div class="lg:col-span-5">
+            <span class="font-mono text-xs text-[#FF5500] uppercase tracking-wider block mb-2">${tab.num}</span>
+            <h3 class="font-display text-2xl sm:text-3xl font-semibold text-[#F5F5F3] mb-4">${tab.title}</h3>
+            <p class="text-sm sm:text-base text-[#9E9EA8] font-light leading-relaxed">
+              ${tab.about}
+            </p>
+          </div>
+
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-8 pt-6 lg:pt-0 border-t lg:border-t-0 lg:border-l border-[#242429] lg:pl-10">
+            <div>
+              <h4 class="font-mono text-xs uppercase tracking-[0.16em] text-[#F5F5F3] mb-4">Entregáveis da Etapa</h4>
+              <ul class="space-y-3">
+                ${tab.deliverables.map(item => `
+                  <li class="flex items-start gap-2.5 text-xs sm:text-sm text-[#9E9EA8] font-light leading-relaxed">
+                    <span class="text-[#FF5500] font-mono">▹</span>
+                    <span>${item}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="font-mono text-xs uppercase tracking-[0.16em] text-[#F5F5F3] mb-4">Benefícios para a Vértice</h4>
+              <ul class="space-y-3">
+                ${tab.benefits.map(item => `
+                  <li class="flex items-start gap-2.5 text-xs sm:text-sm text-[#F5F5F3]/90 font-light leading-relaxed">
+                    <span class="text-[#FF5500] font-mono">✓</span>
+                    <span>${item}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Handlers Interativos
+    function updatePaymentControlsUI() {
+      const isVista = state.paymentMode === 'vista';
+      const pkg = getActivePackage();
+      const pkgSavings = pkg.prazoPrice - pkg.vistaPrice;
+
+      // 1. Indicador de status ativo em tempo real (Passo 1)
+      const liveStatusEl = document.getElementById('payment-live-status');
+      if (liveStatusEl) {
+        liveStatusEl.innerHTML = isVista
+          ? `<span class="w-2 h-2 rounded-full bg-[#FF5500] animate-pulse"></span>
+             <span class="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#F5F5F3]">ATIVO: À VISTA — 20% DE DESCONTO APLICADO</span>`
+          : `<span class="w-2 h-2 rounded-full bg-[#FF5500]"></span>
+             <span class="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#F5F5F3]">ATIVO: A PRAZO — PARCELAMENTO 50/50 OU ATÉ 6X</span>`;
+      }
+
+      // 2. Radio-Cards Grandes (Passo 1)
+      const cardVista = document.getElementById('radio-card-vista');
+      const cardPrazo = document.getElementById('radio-card-prazo');
+      const dotVista = document.getElementById('radio-dot-vista');
+      const dotPrazo = document.getElementById('radio-dot-prazo');
+      const tagVista = document.getElementById('radio-tag-vista');
+      const tagPrazo = document.getElementById('radio-tag-prazo');
+
+      if (cardVista && cardPrazo) {
+        cardVista.setAttribute('aria-checked', isVista ? 'true' : 'false');
+        cardPrazo.setAttribute('aria-checked', !isVista ? 'true' : 'false');
+
+        if (isVista) {
+          cardVista.className = 'pay-radio-card is-active p-5 sm:p-7 border border-[#FF5500] bg-[#FF5500]/[0.09] cursor-pointer select-none flex flex-col justify-between';
+          cardPrazo.className = 'pay-radio-card p-5 sm:p-7 border border-[#242429] bg-[#0D0D10] hover:border-[#FF5500]/50 cursor-pointer select-none flex flex-col justify-between';
+
+          dotVista.className = 'w-5 h-5 rounded-full border-2 border-[#FF5500] flex items-center justify-center shrink-0';
+          dotVista.innerHTML = '<span class="w-2.5 h-2.5 rounded-full bg-[#FF5500]"></span>';
+
+          dotPrazo.className = 'w-5 h-5 rounded-full border-2 border-[#9E9EA8] flex items-center justify-center shrink-0';
+          dotPrazo.innerHTML = '<span class="w-2.5 h-2.5 rounded-full bg-transparent"></span>';
+
+          tagVista.className = 'font-mono text-[10px] font-bold uppercase tracking-widest text-[#FF5500]';
+          tagVista.textContent = '✓ SELECIONADO';
+
+          tagPrazo.className = 'font-mono text-[10px] uppercase tracking-widest text-[#9E9EA8]';
+          tagPrazo.textContent = 'CLIQUE PARA ATIVAR';
+        } else {
+          cardPrazo.className = 'pay-radio-card is-active p-5 sm:p-7 border border-[#FF5500] bg-[#FF5500]/[0.09] cursor-pointer select-none flex flex-col justify-between';
+          cardVista.className = 'pay-radio-card p-5 sm:p-7 border border-[#242429] bg-[#0D0D10] hover:border-[#FF5500]/50 cursor-pointer select-none flex flex-col justify-between';
+
+          dotPrazo.className = 'w-5 h-5 rounded-full border-2 border-[#FF5500] flex items-center justify-center shrink-0';
+          dotPrazo.innerHTML = '<span class="w-2.5 h-2.5 rounded-full bg-[#FF5500]"></span>';
+
+          dotVista.className = 'w-5 h-5 rounded-full border-2 border-[#9E9EA8] flex items-center justify-center shrink-0';
+          dotVista.innerHTML = '<span class="w-2.5 h-2.5 rounded-full bg-transparent"></span>';
+
+          tagPrazo.className = 'font-mono text-[10px] font-bold uppercase tracking-widest text-[#FF5500]';
+          tagPrazo.textContent = '✓ SELECIONADO';
+
+          tagVista.className = 'font-mono text-[10px] uppercase tracking-widest text-[#9E9EA8]';
+          tagVista.textContent = 'CLIQUE PARA ATIVAR';
+        }
+      }
+
+      // 3. Textos dinâmicos dentro dos Radio-Cards
+      const savingsHint = document.getElementById('radio-vista-savings');
+      if (savingsHint) {
+        savingsHint.textContent = `Economia imediata de ${formatBRL(pkgSavings)} no pacote selecionado`;
+      }
+      const prazoPreview = document.getElementById('radio-prazo-preview');
+      if (prazoPreview) {
+        prazoPreview.textContent = `Sinal de ${formatBRL(pkg.prazoPrice / 2)} + ${formatBRL(pkg.prazoPrice / 2)} (ou 6x de ${formatBRL(Math.round(pkg.prazoPrice / 6))})`;
+      }
+
+      // 4. Dica do Passo 2
+      const modeHint = document.getElementById('packages-mode-hint');
+      if (modeHint) {
+        modeHint.innerHTML = isVista
+          ? `Exibindo valores <strong class="text-[#FF5500]">à vista (20% OFF)</strong>`
+          : `Exibindo valores <strong class="text-[#FF5500]">a prazo (50/50 ou 6x)</strong>`;
+      }
+
+      // 5. Mini-seletor espelhado no Resumo Final
+      const miniVista = document.getElementById('mini-pay-vista');
+      const miniPrazo = document.getElementById('mini-pay-prazo');
+      if (miniVista && miniPrazo) {
+        if (isVista) {
+          miniVista.className = 'py-2 px-2.5 font-mono text-[11px] font-bold uppercase tracking-wider rounded-sm bg-[#FF5500] text-[#0A0A0A] transition-all cursor-pointer';
+          miniPrazo.className = 'py-2 px-2.5 font-mono text-[11px] font-medium uppercase tracking-wider rounded-sm text-[#9E9EA8] hover:text-[#F5F5F3] transition-all cursor-pointer';
+        } else {
+          miniPrazo.className = 'py-2 px-2.5 font-mono text-[11px] font-bold uppercase tracking-wider rounded-sm bg-[#FF5500] text-[#0A0A0A] transition-all cursor-pointer';
+          miniVista.className = 'py-2 px-2.5 font-mono text-[11px] font-medium uppercase tracking-wider rounded-sm text-[#9E9EA8] hover:text-[#F5F5F3] transition-all cursor-pointer';
+        }
+      }
+    }
+
+    function setPaymentMode(mode) {
+      state.paymentMode = mode;
+      updateAll();
+    }
+
+    function selectPackage(pkgId) {
+      state.selectedPkgId = pkgId;
+      updateAll();
+    }
+
+    function toggleAddon(addonId) {
+      const target = ADDONS.find(a => a.id === addonId);
+      if (target) {
+        target.checked = !target.checked;
+        updateAll();
+      }
+    }
+
+    function changeExtraPages(delta) {
+      state.extraPages = Math.max(0, state.extraPages + delta);
+      updateAll();
+    }
+
+    function updateAll() {
+      updatePaymentControlsUI();
+      renderPackages();
+      renderAddons();
+      renderSummaryAndTimeline();
+    }
+
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', () => {
+      const cardVista = document.getElementById('radio-card-vista');
+      const cardPrazo = document.getElementById('radio-card-prazo');
+
+      cardVista.addEventListener('click', () => setPaymentMode('vista'));
+      cardVista.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setPaymentMode('vista');
+        }
+      });
+
+      cardPrazo.addEventListener('click', () => setPaymentMode('prazo'));
+      cardPrazo.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setPaymentMode('prazo');
+        }
+      });
+      });
+
+      updateAll();
+      renderMethodologyTab();
+
+      // Animações sutis via GSAP (com fallback seguro)
+      try {
+        if (typeof gsap !== 'undefined') {
+          gsap.from('.hero-reveal', {
+            y: 22,
+            opacity: 0,
+            duration: 0.75,
+            stagger: 0.12,
+            ease: 'power2.out'
+          });
+
+          if (typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.utils.toArray('.reveal-section').forEach(sec => {
+              gsap.from(sec, {
+                y: 24,
+                opacity: 0,
+                duration: 0.7,
+                ease: 'power2.out',
+                scrollTrigger: {
+                  trigger: sec,
+                  start: 'top 86%',
+                  once: true
+                }
+              });
+            });
+          }
+        }
+      } catch (err) {
+        console.warn('GSAP animation skipped:', err);
+      }
+    });
+  </script>
+</body>
+</html>
