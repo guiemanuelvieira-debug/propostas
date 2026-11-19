@@ -78,9 +78,33 @@
     /* Tipografia Fluida com clamp() */
     .hero-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.35rem, 6.2vw, 5.25rem);
-      line-height: 0.98;
+      font-size: clamp(2.15rem, 6.2vw, 5.25rem);
+      line-height: 1.04;
       letter-spacing: -0.03em;
+      text-wrap: balance;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.65rem, 3.8vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      text-wrap: balance;
+    }
+
+    .price-figure {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .text-balance-safe {
+      text-wrap: balance;
+    }
+
+    .text-pretty-safe {
+      text-wrap: pretty;
     }
 
     .section-title {
@@ -183,26 +207,26 @@
   <!-- TOP NAVIGATION BAR                                                    -->
   <!-- ===================================================================== -->
   <header class="sticky top-0 z-40 bg-[#0A0A0A]/90 backdrop-blur-md border-b border-[#242429]">
-    <div class="container-fluid py-4 flex items-center justify-between gap-4">
-      <a href="#" class="flex items-center gap-3 group">
-        <span class="inline-flex items-center justify-center px-2.5 py-1 bg-[#FF5500] text-[#0A0A0A] font-display font-bold text-xs tracking-wider rounded-sm">
+    <div class="container-fluid py-3.5 sm:py-4 flex items-center justify-between gap-3">
+      <a href="#" class="flex items-center gap-2.5 sm:gap-3 group min-w-0">
+        <span class="inline-flex items-center justify-center px-2 sm:px-2.5 py-1 bg-[#FF5500] text-[#0A0A0A] font-display font-bold text-xs tracking-wider rounded-sm shrink-0">
           GVL
         </span>
-        <div class="flex items-center gap-2.5">
-          <span class="font-display font-bold text-base sm:text-lg tracking-tight text-[#F5F5F3] group-hover:text-[#FF5500] transition-colors">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <span class="font-display font-bold text-base sm:text-lg tracking-tight text-[#F5F5F3] group-hover:text-[#FF5500] transition-colors whitespace-nowrap">
             GVL Studio
           </span>
           <span class="hidden md:inline text-[#242429]">//</span>
-          <span class="font-mono text-[10px] sm:text-xs tracking-[0.18em] text-[#9E9EA8] uppercase">Generating Visual Legacies</span>
+          <span class="hidden sm:inline font-mono text-[10px] sm:text-xs tracking-[0.16em] text-[#9E9EA8] uppercase truncate">Generating Visual Legacies</span>
         </div>
       </a>
 
       <!-- Metadados & Atalho -->
-      <div class="flex items-center gap-4 sm:gap-6">
-        <span class="hidden lg:inline-block font-mono text-xs text-[#9E9EA8] tracking-wider uppercase">
+      <div class="flex items-center gap-3 sm:gap-6 shrink-0">
+        <span class="hidden xl:inline-block font-mono text-xs text-[#9E9EA8] tracking-wider uppercase">
           PROPOSTA #2026-114 • VÉRTICE ARQUITETURA • 19/11/2026
         </span>
-        <a href="#investimento" class="font-mono text-xs font-semibold uppercase tracking-wider px-3.5 py-2 border border-[#FF5500]/50 text-[#FF5500] hover:bg-[#FF5500] hover:text-[#09090B] transition-colors rounded-sm">
+        <a href="#investimento" class="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider px-3 py-1.5 sm:px-3.5 sm:py-2 border border-[#FF5500]/50 text-[#FF5500] hover:bg-[#FF5500] hover:text-[#09090B] transition-colors rounded-sm whitespace-nowrap">
           Investimento ↓
         </a>
       </div>
@@ -214,21 +238,21 @@
     <!-- HERO SECTION                                                          -->
     <!-- ===================================================================== -->
     <section class="relative border-b border-[#242429] hero-grid-bg overflow-hidden">
-      <div class="container-fluid pt-16 pb-16 sm:pt-24 sm:pb-24 lg:pt-32 lg:pb-28">
+      <div class="container-fluid pt-12 pb-14 sm:pt-24 sm:pb-24 lg:pt-32 lg:pb-28">
         <div class="max-w-5xl hero-reveal">
-          <div class="inline-flex items-center gap-2.5 px-3 py-1.5 mb-8 border border-[#242429] bg-[#111114] rounded-sm">
-            <span class="w-2 h-2 rounded-full bg-[#FF5500]"></span>
-            <span class="font-mono text-[11px] sm:text-xs uppercase tracking-[0.2em] text-[#F5F5F3]">
-              Diagnóstico Estratégico & Proposta Comercial
+          <div class="inline-flex items-center gap-2 sm:gap-2.5 px-3 py-1.5 mb-6 sm:mb-8 border border-[#242429] bg-[#111114] rounded-sm max-w-full">
+            <span class="w-2 h-2 rounded-full bg-[#FF5500] shrink-0"></span>
+            <span class="font-mono text-[10px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.2em] text-[#F5F5F3] leading-snug">
+              Diagnóstico Estratégico &amp; Proposta Comercial
             </span>
           </div>
 
-          <h1 class="hero-title font-semibold text-[#F5F5F3] mb-8">
-            Olá, Rafael <span class="text-[#FF5500]">&amp;</span><br class="hidden sm:block" />
+          <h1 class="hero-title font-semibold text-[#F5F5F3] mb-6 sm:mb-8">
+            <span class="whitespace-nowrap">Olá, Rafael <span class="text-[#FF5500]">&amp;</span></span><br />
             equipe Vértice<span class="text-[#FF5500]">.</span>
           </h1>
 
-          <p class="text-base sm:text-lg lg:text-xl text-[#9E9EA8] font-light leading-relaxed max-w-3xl mb-12">
+          <p class="text-pretty-safe text-base sm:text-lg lg:text-xl text-[#9E9EA8] font-light leading-relaxed max-w-3xl mb-10 sm:mb-12">
             Com base na nossa reunião de diagnóstico, estruturamos este plano para reposicionar a <strong class="text-[#F5F5F3] font-medium">Vértice Arquitetura &amp; Urbanismo</strong> — elevando a percepção de valor do escritório para conquistar contratos corporativos e residenciais de alto padrão nos próximos 6 meses, unindo estratégia verbal, identidade visual proprietária e uma presença digital desenhada para converter decisores.
           </p>
         </div>
@@ -272,37 +296,37 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-[#242429] bg-[#111114]">
           <!-- Objetivo 01 -->
-          <div class="p-7 sm:p-8 border-b md:border-r border-[#242429] hover:bg-[#16161B] transition-colors">
-            <div class="font-mono text-xs text-[#FF5500] mb-6">01 / POSICIONAMENTO</div>
-            <h3 class="font-display text-lg sm:text-xl font-semibold text-[#F5F5F3] mb-3">Percepção de Alto Ticket</h3>
-            <p class="text-sm text-[#9E9EA8] font-light leading-relaxed">
+          <div class="p-6 sm:p-8 border-b md:border-r border-[#242429] hover:bg-[#16161B] transition-colors">
+            <div class="font-mono text-xs text-[#FF5500] mb-4 sm:mb-6">01 / POSICIONAMENTO</div>
+            <h3 class="text-balance-safe font-display text-lg sm:text-xl font-semibold text-[#F5F5F3] mb-3">Percepção de Alto Ticket</h3>
+            <p class="text-pretty-safe text-sm text-[#9E9EA8] font-light leading-relaxed">
               Transicionar a imagem de projetos residenciais locais para uma assinatura arquitetônica de autoridade, justificando honorários superiores.
             </p>
           </div>
 
           <!-- Objetivo 02 -->
-          <div class="p-7 sm:p-8 border-b lg:border-r border-[#242429] hover:bg-[#16161B] transition-colors">
-            <div class="font-mono text-xs text-[#FF5500] mb-6">02 / CONSISTÊNCIA</div>
-            <h3 class="font-display text-lg sm:text-xl font-semibold text-[#F5F5F3] mb-3">Sistema Visual &amp; Verbal</h3>
-            <p class="text-sm text-[#9E9EA8] font-light leading-relaxed">
+          <div class="p-6 sm:p-8 border-b lg:border-r border-[#242429] hover:bg-[#16161B] transition-colors">
+            <div class="font-mono text-xs text-[#FF5500] mb-4 sm:mb-6">02 / CONSISTÊNCIA</div>
+            <h3 class="text-balance-safe font-display text-lg sm:text-xl font-semibold text-[#F5F5F3] mb-3">Sistema Visual &amp; Verbal</h3>
+            <p class="text-pretty-safe text-sm text-[#9E9EA8] font-light leading-relaxed">
               Unificar discurso, manifesto, propostas técnicas, pranchas de apresentação e todos os pontos de contato físicos e digitais da Vértice.
             </p>
           </div>
 
           <!-- Objetivo 03 -->
-          <div class="p-7 sm:p-8 border-b md:border-b-0 md:border-r border-[#242429] hover:bg-[#16161B] transition-colors">
-            <div class="font-mono text-xs text-[#FF5500] mb-6">03 / AQUISIÇÃO</div>
-            <h3 class="font-display text-lg sm:text-xl font-semibold text-[#F5F5F3] mb-3">Presença Digital de Conversão</h3>
-            <p class="text-sm text-[#9E9EA8] font-light leading-relaxed">
+          <div class="p-6 sm:p-8 border-b md:border-b-0 md:border-r border-[#242429] hover:bg-[#16161B] transition-colors">
+            <div class="font-mono text-xs text-[#FF5500] mb-4 sm:mb-6">03 / AQUISIÇÃO</div>
+            <h3 class="text-balance-safe font-display text-lg sm:text-xl font-semibold text-[#F5F5F3] mb-3">Presença Digital de Conversão</h3>
+            <p class="text-pretty-safe text-sm text-[#9E9EA8] font-light leading-relaxed">
               Estruturar uma plataforma digital rápida e persuasiva para transformar indicações e tráfego qualificado em reuniões de briefing.
             </p>
           </div>
 
           <!-- Objetivo 04 -->
-          <div class="p-7 sm:p-8 hover:bg-[#16161B] transition-colors">
-            <div class="font-mono text-xs text-[#FF5500] mb-6">04 / ESCALA INTERNA</div>
-            <h3 class="font-display text-lg sm:text-xl font-semibold text-[#F5F5F3] mb-3">Governança &amp; Autonomia</h3>
-            <p class="text-sm text-[#9E9EA8] font-light leading-relaxed">
+          <div class="p-6 sm:p-8 hover:bg-[#16161B] transition-colors">
+            <div class="font-mono text-xs text-[#FF5500] mb-4 sm:mb-6">04 / ESCALA INTERNA</div>
+            <h3 class="text-balance-safe font-display text-lg sm:text-xl font-semibold text-[#F5F5F3] mb-3">Governança &amp; Autonomia</h3>
+            <p class="text-pretty-safe text-sm text-[#9E9EA8] font-light leading-relaxed">
               Entregar Brandbook e ativos organizados para que a equipe de 18 colaboradores aplique a marca com rigor estético e zero ruído.
             </p>
           </div>
@@ -325,58 +349,58 @@
         </div>
 
         <!-- PASSO 1: CABEÇALHO DOS 3 CARDS -->
-        <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
-          <div class="flex items-center gap-3">
-            <span class="font-mono text-[11px] font-bold uppercase tracking-[0.16em] px-2.5 py-1 bg-[#FF5500] text-[#0A0A0A] rounded-sm">
+        <div class="flex flex-wrap items-center justify-between gap-2.5 mb-7 sm:mb-6">
+          <div class="flex items-center gap-2.5 sm:gap-3">
+            <span class="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.14em] px-2.5 py-1 bg-[#FF5500] text-[#0A0A0A] rounded-sm shrink-0">
               PASSO 1
             </span>
             <h3 class="font-display text-lg sm:text-xl font-semibold text-[#F5F5F3]">
               Escolha o Escopo Ideal
             </h3>
           </div>
-          <span id="packages-mode-hint" class="font-mono text-xs text-[#9E9EA8]">
+          <span id="packages-mode-hint" class="font-mono text-[11px] sm:text-xs text-[#9E9EA8]">
             Exibindo valores <strong class="text-[#FF5500]">à vista (20% OFF)</strong>
           </span>
         </div>
 
         <!-- 3 CARDS LADO A LADO (Ancoragem Cenário A — Porte 2: Tier 3 -> Tier 2 ⭐ -> Tier 1) -->
-        <div id="packages-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+        <div id="packages-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-7 lg:gap-6 mb-12">
           <!-- Renderizado via JavaScript para sincronia perfeita de seleção e preços -->
         </div>
 
         <!-- MÓDULOS EXTRAS (ADD-ONS) + CHECKOUT / RESUMO EXECUTIVO INTERATIVO -->
         <div class="grid grid-cols-1 lg:grid-cols-12 border border-[#242429] bg-[#111114]">
           <!-- Coluna Esquerda: Add-ons -->
-          <div class="lg:col-span-7 p-6 sm:p-10 border-b lg:border-b-0 lg:border-r border-[#242429]">
+          <div class="lg:col-span-7 p-5 sm:p-10 border-b lg:border-b-0 lg:border-r border-[#242429]">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-              <div class="flex items-center gap-3">
-                <span class="font-mono text-[11px] font-bold uppercase tracking-[0.16em] px-2.5 py-1 border border-[#FF5500] text-[#FF5500] rounded-sm">
+              <div class="flex items-center gap-2.5 sm:gap-3">
+                <span class="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.14em] px-2.5 py-1 border border-[#FF5500] text-[#FF5500] rounded-sm shrink-0">
                   PASSO 2
                 </span>
-                <h3 class="font-display text-xl sm:text-2xl font-semibold text-[#F5F5F3]">Módulos Extras (Add-ons)</h3>
+                <h3 class="font-display text-lg sm:text-2xl font-semibold text-[#F5F5F3]">Módulos Extras (Add-ons)</h3>
               </div>
-              <span class="font-mono text-[11px] text-[#9E9EA8] uppercase tracking-wider">Valores Fixos Opcionais</span>
+              <span class="font-mono text-[10px] sm:text-[11px] text-[#9E9EA8] uppercase tracking-wider">Valores Fixos Opcionais</span>
             </div>
-            <p class="text-sm text-[#9E9EA8] font-light mb-8">
+            <p class="text-pretty-safe text-sm text-[#9E9EA8] font-light mb-6 sm:mb-8">
               Recursos complementares mapeados durante o diagnóstico para acelerar a operação comercial da Vértice.
             </p>
 
-            <div id="addons-list" class="space-y-4">
+            <div id="addons-list" class="space-y-3.5 sm:space-y-4">
               <!-- Renderizado via JavaScript -->
             </div>
           </div>
 
           <!-- Coluna Direita: Checkout & CTA WhatsApp -->
-          <div id="checkout-panel" class="lg:col-span-5 p-6 sm:p-10 bg-[#0D0D10] flex flex-col justify-between">
+          <div id="checkout-panel" class="lg:col-span-5 p-5 sm:p-10 bg-[#0D0D10] flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between gap-2 pb-4 mb-6 border-b border-[#242429]">
+              <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-6 border-b border-[#242429]">
                 <div class="flex items-center gap-2.5">
-                  <span class="font-mono text-[10px] font-bold uppercase tracking-[0.16em] px-2 py-0.5 bg-[#FF5500] text-[#0A0A0A] rounded-sm">
+                  <span class="font-mono text-[10px] font-bold uppercase tracking-[0.14em] px-2 py-0.5 bg-[#FF5500] text-[#0A0A0A] rounded-sm shrink-0">
                     PASSO 3
                   </span>
-                  <span class="font-mono text-xs uppercase tracking-[0.16em] text-[#F5F5F3] font-semibold">Checkout &amp; Resumo</span>
+                  <span class="font-mono text-xs uppercase tracking-[0.14em] text-[#F5F5F3] font-semibold whitespace-nowrap">Checkout &amp; Resumo</span>
                 </div>
-                <span id="summary-badge" class="font-mono text-[10px] px-2.5 py-1 bg-[#FF5500]/10 text-[#FF5500] border border-[#FF5500]/30 rounded-sm">
+                <span id="summary-badge" class="font-mono text-[10px] px-2.5 py-1 bg-[#FF5500]/10 text-[#FF5500] border border-[#FF5500]/30 rounded-sm whitespace-nowrap">
                   À VISTA (-20%)
                 </span>
               </div>
@@ -446,11 +470,11 @@
             <div>
               <!-- Bloco de Total -->
               <div class="pt-6 border-t border-[#242429] mb-6">
-                <div class="flex items-baseline justify-between gap-4 mb-2">
-                  <span class="font-mono text-xs uppercase tracking-wider text-[#9E9EA8]">Investimento Total</span>
-                  <span id="summary-total" class="price-figure font-bold text-[#F5F5F3]">R$ 12.000</span>
+                <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+                  <span class="font-mono text-xs uppercase tracking-wider text-[#9E9EA8] whitespace-nowrap">Investimento Total</span>
+                  <span id="summary-total" class="price-figure font-bold text-[#F5F5F3] whitespace-nowrap">R$ 12.000</span>
                 </div>
-                <p id="summary-condition-detail" class="text-xs text-[#9E9EA8] font-light leading-relaxed">
+                <p id="summary-condition-detail" class="text-pretty-safe text-xs text-[#9E9EA8] font-light leading-relaxed">
                   <!-- Preenchido via JS -->
                 </p>
               </div>
@@ -487,26 +511,26 @@
 
         <!-- Abas Interativas das Etapas -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-[#242429] bg-[#111114] mb-6" role="tablist">
-          <button type="button" role="tab" aria-selected="true" data-tab="0" class="tab-btn p-5 text-left border-b sm:border-r border-[#242429] transition-colors cursor-pointer">
-            <div class="tab-num font-mono text-xs text-[#9E9EA8] mb-1">ETAPA 01</div>
+          <button type="button" role="tab" aria-selected="true" data-tab="0" class="tab-btn p-4 sm:p-5 text-left border-b sm:border-r border-[#242429] transition-colors cursor-pointer">
+            <div class="tab-num font-mono text-[11px] sm:text-xs text-[#9E9EA8] mb-1">ETAPA 01</div>
             <div class="font-display font-semibold text-sm sm:text-base text-[#F5F5F3]">Imersão &amp; Estratégia</div>
           </button>
-          <button type="button" role="tab" aria-selected="false" data-tab="1" class="tab-btn p-5 text-left border-b lg:border-r border-[#242429] transition-colors cursor-pointer">
-            <div class="tab-num font-mono text-xs text-[#9E9EA8] mb-1">ETAPA 02</div>
+          <button type="button" role="tab" aria-selected="false" data-tab="1" class="tab-btn p-4 sm:p-5 text-left border-b lg:border-r border-[#242429] transition-colors cursor-pointer">
+            <div class="tab-num font-mono text-[11px] sm:text-xs text-[#9E9EA8] mb-1">ETAPA 02</div>
             <div class="font-display font-semibold text-sm sm:text-base text-[#F5F5F3]">Universo Verbal &amp; Visual</div>
           </button>
-          <button type="button" role="tab" aria-selected="false" data-tab="2" class="tab-btn p-5 text-left border-b sm:border-b-0 sm:border-r border-[#242429] transition-colors cursor-pointer">
-            <div class="tab-num font-mono text-xs text-[#9E9EA8] mb-1">ETAPA 03</div>
+          <button type="button" role="tab" aria-selected="false" data-tab="2" class="tab-btn p-4 sm:p-5 text-left border-b sm:border-b-0 sm:border-r border-[#242429] transition-colors cursor-pointer">
+            <div class="tab-num font-mono text-[11px] sm:text-xs text-[#9E9EA8] mb-1">ETAPA 03</div>
             <div class="font-display font-semibold text-sm sm:text-base text-[#F5F5F3]">UI Figma &amp; Desenvolvimento</div>
           </button>
-          <button type="button" role="tab" aria-selected="false" data-tab="3" class="tab-btn p-5 text-left transition-colors cursor-pointer">
-            <div class="tab-num font-mono text-xs text-[#9E9EA8] mb-1">ETAPA 04 (OPCIONAL)</div>
+          <button type="button" role="tab" aria-selected="false" data-tab="3" class="tab-btn p-4 sm:p-5 text-left transition-colors cursor-pointer">
+            <div class="tab-num font-mono text-[11px] sm:text-xs text-[#9E9EA8] mb-1">ETAPA 04 (OPCIONAL)</div>
             <div class="font-display font-semibold text-sm sm:text-base text-[#F5F5F3]">Gestão &amp; Evolução Contínua</div>
           </button>
         </div>
 
         <!-- Painel de Conteúdo da Etapa Ativa -->
-        <div id="tab-content-panel" class="border border-[#242429] bg-[#111114] p-7 sm:p-12">
+        <div id="tab-content-panel" class="border border-[#242429] bg-[#111114] p-5 sm:p-12">
           <!-- Renderizado via JS -->
         </div>
       </div>
@@ -541,28 +565,28 @@
 
             <div class="space-y-4">
               <!-- Opção 1 -->
-              <div class="p-6 border border-[#FF5500]/50 bg-[#FF5500]/[0.05]">
-                <div class="flex items-center justify-between mb-2">
+              <div class="p-5 sm:p-6 border border-[#FF5500]/50 bg-[#FF5500]/[0.05]">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                   <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#FF5500]">Opção 01 • À Vista (20% OFF)</span>
-                  <span class="font-mono text-[10px] uppercase px-2 py-0.5 bg-[#FF5500] text-[#09090B] font-bold">Maior Economia</span>
+                  <span class="font-mono text-[10px] uppercase px-2 py-0.5 bg-[#FF5500] text-[#09090B] font-bold whitespace-nowrap">Maior Economia</span>
                 </div>
-                <p class="text-sm text-[#F5F5F3] font-light leading-relaxed">
+                <p class="text-pretty-safe text-sm text-[#F5F5F3] font-light leading-relaxed">
                   Desconto direto de <strong>20% sobre o valor total</strong> para pagamento integral na aprovação via PIX ou transferência bancária.
                 </p>
               </div>
 
               <!-- Opção 2 -->
-              <div class="p-6 border border-[#242429] bg-[#111114]">
+              <div class="p-5 sm:p-6 border border-[#242429] bg-[#111114]">
                 <div class="font-mono text-xs font-semibold uppercase tracking-wider text-[#F5F5F3] mb-2">Opção 02 • Modelo Padrão 50/50</div>
-                <p class="text-sm text-[#9E9EA8] font-light leading-relaxed">
+                <p class="text-pretty-safe text-sm text-[#9E9EA8] font-light leading-relaxed">
                   <strong>50% de sinal</strong> na assinatura do contrato para reserva de agenda e kick-off imediato + <strong>50% na entrega final</strong> dos arquivos e publicação.
                 </p>
               </div>
 
               <!-- Opção 3 -->
-              <div class="p-6 border border-[#242429] bg-[#111114]">
+              <div class="p-5 sm:p-6 border border-[#242429] bg-[#111114]">
                 <div class="font-mono text-xs font-semibold uppercase tracking-wider text-[#F5F5F3] mb-2">Opção 03 • Parcelado em até 6x</div>
-                <p class="text-sm text-[#9E9EA8] font-light leading-relaxed">
+                <p class="text-pretty-safe text-sm text-[#9E9EA8] font-light leading-relaxed">
                   Parcele o investimento a prazo em <strong>até 6x sem juros</strong> no Cartão de Crédito ou Boleto Bancário.
                 </p>
               </div>
@@ -594,69 +618,69 @@
           </div>
 
           <!-- Selo Trustindex -->
-          <div class="inline-flex items-center gap-4 px-5 py-3.5 border border-[#242429] bg-[#111114]">
-            <div class="font-mono text-sm tracking-widest text-[#FF5500]">★★★★★ 5.0</div>
-            <div class="border-l border-[#242429] pl-4">
-              <div class="font-display text-xs font-semibold text-[#F5F5F3] uppercase tracking-wider">Top Rated Service</div>
-              <div class="font-mono text-[10px] text-[#9E9EA8] uppercase">Verified by Trustindex</div>
+          <div class="inline-flex items-center gap-3 sm:gap-4 px-4 py-3 sm:px-5 sm:py-3.5 border border-[#242429] bg-[#111114] self-start md:self-auto max-w-full">
+            <div class="font-mono text-xs sm:text-sm tracking-wider sm:tracking-widest text-[#FF5500] whitespace-nowrap shrink-0">★★★★★ 5.0</div>
+            <div class="border-l border-[#242429] pl-3 sm:pl-4 min-w-0">
+              <div class="font-display text-xs font-semibold text-[#F5F5F3] uppercase tracking-wider leading-tight">Top Rated Service</div>
+              <div class="font-mono text-[10px] text-[#9E9EA8] uppercase leading-tight mt-0.5">Verified by Trustindex</div>
             </div>
           </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- Depoimento 1: Alana Damaris (Arquiteta) -->
-          <article class="p-8 border border-[#242429] bg-[#111114] flex flex-col justify-between hover:border-[#FF5500]/40 transition-colors">
-            <p class="text-base text-[#F5F5F3] font-light leading-relaxed mb-8">
+          <article class="p-6 sm:p-8 border border-[#242429] bg-[#111114] flex flex-col justify-between hover:border-[#FF5500]/40 transition-colors">
+            <p class="text-pretty-safe text-base text-[#F5F5F3] font-light leading-relaxed mb-6 sm:mb-8">
               “Excelente trabalho!!! Fiquei impressionada com o resultado!”
             </p>
-            <div class="flex items-center justify-between pt-4 border-t border-[#242429]">
+            <div class="flex items-center justify-between gap-3 pt-4 border-t border-[#242429]">
               <div>
                 <h3 class="font-display font-semibold text-sm text-[#F5F5F3]">Alana Damaris</h3>
                 <p class="font-mono text-xs text-[#9E9EA8]">Arquiteta</p>
               </div>
-              <span class="font-mono text-xs text-[#FF5500]">★★★★★</span>
+              <span class="font-mono text-xs text-[#FF5500] whitespace-nowrap shrink-0">★★★★★</span>
             </div>
           </article>
 
           <!-- Depoimento 2: Andressa Schulz -->
-          <article class="p-8 border border-[#242429] bg-[#111114] flex flex-col justify-between hover:border-[#FF5500]/40 transition-colors">
-            <p class="text-sm sm:text-base text-[#F5F5F3] font-light leading-relaxed mb-8">
+          <article class="p-6 sm:p-8 border border-[#242429] bg-[#111114] flex flex-col justify-between hover:border-[#FF5500]/40 transition-colors">
+            <p class="text-pretty-safe text-sm sm:text-base text-[#F5F5F3] font-light leading-relaxed mb-6 sm:mb-8">
               “Gostaria de te agradecer pelo trabalho incrível que fez. A identidade que você criou realmente capturou a essência do que eu queria transmitir, e o resultado superou minhas expectativas. Seu talento e dedicação ficaram evidentes em cada detalhe, e estou muito feliz com o resultado final.”
             </p>
-            <div class="flex items-center justify-between pt-4 border-t border-[#242429]">
+            <div class="flex items-center justify-between gap-3 pt-4 border-t border-[#242429]">
               <div>
                 <h3 class="font-display font-semibold text-sm text-[#F5F5F3]">Andressa Schulz</h3>
                 <p class="font-mono text-xs text-[#9E9EA8]">Psicóloga</p>
               </div>
-              <span class="font-mono text-xs text-[#FF5500]">★★★★★</span>
+              <span class="font-mono text-xs text-[#FF5500] whitespace-nowrap shrink-0">★★★★★</span>
             </div>
           </article>
 
           <!-- Depoimento 3: Emerson Euzébio -->
-          <article class="p-8 border border-[#242429] bg-[#111114] flex flex-col justify-between hover:border-[#FF5500]/40 transition-colors">
-            <p class="text-sm sm:text-base text-[#F5F5F3] font-light leading-relaxed mb-8">
+          <article class="p-6 sm:p-8 border border-[#242429] bg-[#111114] flex flex-col justify-between hover:border-[#FF5500]/40 transition-colors">
+            <p class="text-pretty-safe text-sm sm:text-base text-[#F5F5F3] font-light leading-relaxed mb-6 sm:mb-8">
               “Guilherme, ficou show! Que maravilha, agora eu vejo com mais qualidade. Obrigado por agregar valor através do seu trabalho e ser sempre solícito.”
             </p>
-            <div class="flex items-center justify-between pt-4 border-t border-[#242429]">
+            <div class="flex items-center justify-between gap-3 pt-4 border-t border-[#242429]">
               <div>
                 <h3 class="font-display font-semibold text-sm text-[#F5F5F3]">Emerson Euzébio</h3>
                 <p class="font-mono text-xs text-[#9E9EA8]">Professor, Ator e Coreógrafo — Cia Mudança</p>
               </div>
-              <span class="font-mono text-xs text-[#FF5500]">★★★★★</span>
+              <span class="font-mono text-xs text-[#FF5500] whitespace-nowrap shrink-0">★★★★★</span>
             </div>
           </article>
 
           <!-- Depoimento 4: Isabely Vieira -->
-          <article class="p-8 border border-[#242429] bg-[#111114] flex flex-col justify-between hover:border-[#FF5500]/40 transition-colors">
-            <p class="text-base text-[#F5F5F3] font-light leading-relaxed mb-8">
+          <article class="p-6 sm:p-8 border border-[#242429] bg-[#111114] flex flex-col justify-between hover:border-[#FF5500]/40 transition-colors">
+            <p class="text-pretty-safe text-base text-[#F5F5F3] font-light leading-relaxed mb-6 sm:mb-8">
               “Atendimento perfeito, superou minhas expectativas!”
             </p>
-            <div class="flex items-center justify-between pt-4 border-t border-[#242429]">
+            <div class="flex items-center justify-between gap-3 pt-4 border-t border-[#242429]">
               <div>
                 <h3 class="font-display font-semibold text-sm text-[#F5F5F3]">Isabely Vieira</h3>
                 <p class="font-mono text-xs text-[#9E9EA8]">Sócia Proprietária — ZK Shoes</p>
               </div>
-              <span class="font-mono text-xs text-[#FF5500]">★★★★★</span>
+              <span class="font-mono text-xs text-[#FF5500] whitespace-nowrap shrink-0">★★★★★</span>
             </div>
           </article>
         </div>
@@ -667,25 +691,25 @@
   <!-- ===================================================================== -->
   <!-- FOOTER                                                                -->
   <!-- ===================================================================== -->
-  <footer class="border-t border-[#242429] bg-[#070709] py-12">
+  <footer class="border-t border-[#242429] bg-[#070709] py-10 sm:py-12">
     <div class="container-fluid flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
       <div>
         <div class="font-display font-bold text-base text-[#F5F5F3] tracking-tight mb-1">
           GVL Studio <span class="text-[#FF5500]">—</span> Generating Visual Legacies
         </div>
-        <p class="font-mono text-xs text-[#9E9EA8]">
+        <p class="font-mono text-xs text-[#9E9EA8] leading-relaxed">
           Proposta exclusiva elaborada para Vértice Arquitetura &amp; Urbanismo • 19/11/2026
         </p>
       </div>
 
-      <div class="flex flex-wrap items-center gap-6 font-mono text-xs text-[#9E9EA8]">
-        <a href="https://gvlstudio.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#FF5500] transition-colors">
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-xs text-[#9E9EA8]">
+        <a href="https://gvlstudio.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#FF5500] transition-colors whitespace-nowrap">
           gvlstudio.com ↗
         </a>
-        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#FF5500] transition-colors">
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#FF5500] transition-colors whitespace-nowrap">
           LinkedIn: GVL Studio ↗
         </a>
-        <a href="https://wa.me/5518981484150" target="_blank" rel="noopener noreferrer" class="text-[#F5F5F3] hover:text-[#FF5500] transition-colors">
+        <a href="https://wa.me/5518981484150" target="_blank" rel="noopener noreferrer" class="text-[#F5F5F3] hover:text-[#FF5500] transition-colors whitespace-nowrap">
           +55 18 98148-4150
         </a>
       </div>
@@ -933,45 +957,45 @@
         return `
           <div onclick="selectPackage('${pkg.id}')" role="button" tabindex="0" aria-pressed="${isSelected}"
                onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectPackage('${pkg.id}');}"
-               class="pkg-card relative p-7 sm:p-9 border ${borderClasses} flex flex-col justify-between cursor-pointer select-none">
+               class="pkg-card relative p-6 sm:p-9 border ${borderClasses} ${pkg.recommended ? 'mt-3 lg:mt-0' : ''} flex flex-col justify-between cursor-pointer select-none">
             
             ${pkg.recommended ? `
-              <div class="absolute -top-3.5 left-7 bg-[#FF5500] text-[#0A0A0A] font-mono text-[10px] font-bold uppercase tracking-[0.16em] px-3 py-1 rounded-sm">
+              <div class="absolute -top-3.5 left-5 sm:left-7 bg-[#FF5500] text-[#0A0A0A] font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.1em] sm:tracking-[0.16em] px-2.5 sm:px-3 py-1 rounded-sm whitespace-nowrap max-w-[calc(100%-2.5rem)] truncate">
                 ★ Recomendado para o seu momento
               </div>
             ` : ''}
 
             <div>
-              <div class="flex items-center justify-between gap-2 mb-4 pt-1">
-                <span class="font-mono text-[11px] uppercase tracking-wider ${isSelected ? 'text-[#FF5500]' : 'text-[#9E9EA8]'}">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-4 pt-1">
+                <span class="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider ${isSelected ? 'text-[#FF5500]' : 'text-[#9E9EA8]'}">
                   ${pkg.tierTag}
                 </span>
-                <span class="font-mono text-[11px] px-2.5 py-0.5 border border-[#242429] bg-[#0A0A0A] text-[#F5F5F3]">
+                <span class="font-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 border border-[#242429] bg-[#0A0A0A] text-[#F5F5F3] whitespace-nowrap shrink-0">
                   ${pkg.timeline}
                 </span>
               </div>
 
-              <h3 class="font-display text-xl sm:text-2xl font-semibold text-[#F5F5F3] mb-2">
+              <h3 class="text-balance-safe font-display text-xl sm:text-2xl font-semibold text-[#F5F5F3] mb-2">
                 ${pkg.name}
               </h3>
-              <p class="text-xs sm:text-sm text-[#9E9EA8] font-light leading-relaxed mb-7">
+              <p class="text-pretty-safe text-xs sm:text-sm text-[#9E9EA8] font-light leading-relaxed mb-6 sm:mb-7">
                 ${pkg.subtitle}
               </p>
 
               <!-- Preço -->
-              <div class="pb-7 mb-7 border-b border-[#242429]">
+              <div class="pb-6 mb-6 sm:pb-7 sm:mb-7 border-b border-[#242429]">
                 <div class="flex items-baseline gap-2">
-                  <span class="price-figure font-bold text-[#F5F5F3]">${formatBRL(currentPrice)}</span>
-                  <span class="font-mono text-xs text-[#FF5500] uppercase font-semibold">${isVista ? 'à vista' : 'a prazo'}</span>
+                  <span class="price-figure font-bold text-[#F5F5F3] whitespace-nowrap">${formatBRL(currentPrice)}</span>
+                  <span class="font-mono text-xs text-[#FF5500] uppercase font-semibold whitespace-nowrap">${isVista ? 'à vista' : 'a prazo'}</span>
                 </div>
                 ${priceFootnoteHTML}
               </div>
 
               <!-- Entregáveis -->
-              <ul class="space-y-3 mb-8">
+              <ul class="space-y-2.5 sm:space-y-3 mb-7 sm:mb-8">
                 ${pkg.features.map(item => `
-                  <li class="flex items-start gap-3 text-xs sm:text-sm text-[#F5F5F3]/90 font-light leading-relaxed">
-                    <span class="text-[#FF5500] font-mono mt-0.5">▹</span>
+                  <li class="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-sm text-[#F5F5F3]/90 font-light leading-relaxed">
+                    <span class="text-[#FF5500] font-mono mt-0.5 shrink-0">▹</span>
                     <span>${item}</span>
                   </li>
                 `).join('')}
@@ -979,11 +1003,11 @@
             </div>
 
             <!-- Indicador de Seleção -->
-            <div class="pt-4 border-t border-[#242429] flex items-center justify-between">
-              <span class="font-mono text-xs uppercase tracking-wider ${isSelected ? 'text-[#FF5500] font-semibold' : 'text-[#9E9EA8]'}">
+            <div class="pt-4 border-t border-[#242429] flex items-center justify-between gap-2">
+              <span class="font-mono text-[11px] sm:text-xs uppercase tracking-wider ${isSelected ? 'text-[#FF5500] font-semibold' : 'text-[#9E9EA8]'}">
                 ${isSelected ? '● Pacote Selecionado' : '○ Clique para selecionar'}
               </span>
-              <span class="font-mono text-xs ${isSelected ? 'text-[#FF5500]' : 'text-[#9E9EA8]'}">→</span>
+              <span class="font-mono text-xs ${isSelected ? 'text-[#FF5500]' : 'text-[#9E9EA8]'} shrink-0">→</span>
             </div>
           </div>
         `;
@@ -1001,26 +1025,26 @@
         const isChecked = isIncludedInTier3 ? true : addon.checked;
 
         return `
-          <label class="flex items-start justify-between gap-4 p-4 border ${isChecked ? 'border-[#FF5500]/50 bg-[#FF5500]/[0.04]' : 'border-[#242429] bg-[#0D0D10]'} transition-colors ${isIncludedInTier3 ? 'cursor-default' : 'cursor-pointer hover:border-[#44444F]'}">
-            <div class="flex items-start gap-3.5">
+          <label class="flex flex-col sm:flex-row sm:items-start justify-between gap-2.5 sm:gap-4 p-4 border ${isChecked ? 'border-[#FF5500]/50 bg-[#FF5500]/[0.04]' : 'border-[#242429] bg-[#0D0D10]'} transition-colors ${isIncludedInTier3 ? 'cursor-default' : 'cursor-pointer hover:border-[#44444F]'}">
+            <div class="flex items-start gap-3">
               <input type="checkbox"
                      ${isChecked ? 'checked' : ''}
                      ${isIncludedInTier3 ? 'disabled' : ''}
                      onchange="toggleAddon('${addon.id}')"
-                     class="mt-1 w-4 h-4 accent-[#FF5500] cursor-pointer" />
-              <div>
-                <div class="font-display text-sm sm:text-base font-medium text-[#F5F5F3]">
+                     class="mt-1 w-4 h-4 accent-[#FF5500] cursor-pointer shrink-0" />
+              <div class="min-w-0">
+                <div class="font-display text-sm sm:text-base font-medium text-[#F5F5F3] leading-snug">
                   ${addon.name}
                 </div>
-                <p class="text-xs text-[#9E9EA8] font-light mt-0.5 leading-relaxed">
+                <p class="text-pretty-safe text-xs text-[#9E9EA8] font-light mt-1 leading-relaxed">
                   ${addon.desc}
                 </p>
               </div>
             </div>
-            <div class="text-right shrink-0">
+            <div class="pl-7 sm:pl-0 sm:text-right shrink-0">
               ${isIncludedInTier3
-                ? `<span class="font-mono text-[11px] font-bold text-[#FF5500] uppercase">Incluso (R$ 0)</span>`
-                : `<span class="font-mono text-sm font-semibold text-[#F5F5F3]">+ ${formatBRL(price)}</span>`
+                ? `<span class="font-mono text-[11px] font-bold text-[#FF5500] uppercase whitespace-nowrap">Incluso (R$ 0)</span>`
+                : `<span class="font-mono text-xs sm:text-sm font-semibold text-[#F5F5F3] whitespace-nowrap">+ ${formatBRL(price)}</span>`
               }
             </div>
           </label>
@@ -1032,22 +1056,22 @@
       const extraPageTotal = state.extraPages * extraPageUnit;
 
       const extraPagesHTML = `
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border ${state.extraPages > 0 ? 'border-[#FF5500]/50 bg-[#FF5500]/[0.04]' : 'border-[#242429] bg-[#0D0D10]'}">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 sm:gap-4 p-4 border ${state.extraPages > 0 ? 'border-[#FF5500]/50 bg-[#FF5500]/[0.04]' : 'border-[#242429] bg-[#0D0D10]'}">
           <div>
-            <div class="font-display text-sm sm:text-base font-medium text-[#F5F5F3]">
+            <div class="font-display text-sm sm:text-base font-medium text-[#F5F5F3] leading-snug">
               Página Extra no Website (além das 5 págs)
             </div>
-            <p class="text-xs text-[#9E9EA8] font-light mt-0.5">
+            <p class="text-xs text-[#9E9EA8] font-light mt-1">
               ${formatBRL(extraPageUnit)} por página adicional (${isVista ? 'à vista' : 'a prazo'}).
             </p>
           </div>
-          <div class="flex items-center justify-between sm:justify-end gap-4">
+          <div class="flex items-center justify-between sm:justify-end gap-4 pt-1 sm:pt-0">
             <div class="inline-flex items-center border border-[#242429] bg-[#111114]">
               <button type="button" onclick="changeExtraPages(-1)" aria-label="Remover página extra" class="w-8 h-8 font-mono text-sm text-[#F5F5F3] hover:bg-[#242429] transition-colors cursor-pointer">-</button>
               <span class="w-10 text-center font-mono text-xs font-semibold text-[#F5F5F3]">${state.extraPages}</span>
               <button type="button" onclick="changeExtraPages(1)" aria-label="Adicionar página extra" class="w-8 h-8 font-mono text-sm text-[#F5F5F3] hover:bg-[#242429] transition-colors cursor-pointer">+</button>
             </div>
-            <span class="font-mono text-sm font-semibold text-[#F5F5F3] min-w-[82px] text-right">
+            <span class="font-mono text-xs sm:text-sm font-semibold text-[#F5F5F3] min-w-[76px] text-right whitespace-nowrap">
               + ${formatBRL(extraPageTotal)}
             </span>
           </div>
@@ -1170,12 +1194,12 @@
       document.getElementById('timeline-pkg-name').textContent = `${pkg.name} (${pkg.timeline})`;
       const timelineList = document.getElementById('timeline-list');
       timelineList.innerHTML = pkg.schedule.map((step, idx) => `
-        <div class="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div class="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-4">
           <div class="flex items-start gap-3">
-            <span class="font-mono text-xs text-[#FF5500] mt-0.5">0${idx + 1}</span>
-            <span class="text-sm text-[#F5F5F3] font-light">${step.phase}</span>
+            <span class="font-mono text-xs text-[#FF5500] mt-0.5 shrink-0">0${idx + 1}</span>
+            <span class="text-sm text-[#F5F5F3] font-light leading-snug">${step.phase}</span>
           </div>
-          <span class="font-mono text-xs text-[#9E9EA8] sm:text-right shrink-0 pl-6 sm:pl-0">${step.duration}</span>
+          <span class="font-mono text-xs text-[#9E9EA8] sm:text-right shrink-0 pl-7 sm:pl-0 whitespace-nowrap">${step.duration}</span>
         </div>
       `).join('');
     }
